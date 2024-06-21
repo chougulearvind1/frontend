@@ -1,0 +1,667 @@
+[
+    {
+        "__v": 26,
+        "_id": "665a73077319fea6b0bb303e",
+        "content": "hii arvind5",
+        "createdAt": "2024-06-01T01:02:00.110Z",
+        "likes": [
+            {
+                "__v": 0,
+                "_id": "66642b6d4c113f04f3f275e8",
+                "createdAt": "2024-06-08T09:59:09.328Z",
+                "date_of_birth": null,
+                "Email": "rahulchougule@gmail.com",
+                "followers": [],
+                "following": [],
+                "Name": "rahul patil",
+                "updatedAt": "2024-06-08T09:59:09.328Z",
+                "UserName": "chougule"
+            }
+        ],
+        "replies": [
+            {
+                "__v": 6,
+                "_id": "667270e917f764bffc21b9b1",
+                "content": "cute12354",
+                "createdAt": "2024-06-19T05:47:21.772Z",
+                "likes": [
+                    "66642b6d4c113f04f3f275e8"
+                ],
+                "replies": [
+                    "66727fcaef6e486f530f96ea",
+                    "66728c29ef6e486f530f9745",
+                    "6672b031796dd8ef333aee4b"
+                ],
+                "retweetBy": [],
+                "tweetedBy": {
+                    "__v": 0,
+                    "_id": "66642b6d4c113f04f3f275e8",
+                    "createdAt": "2024-06-08T09:59:09.328Z",
+                    "date_of_birth": null,
+                    "Email": "rahulchougule@gmail.com",
+                    "followers": [],
+                    "following": [],
+                    "Name": "rahul patil",
+                    "updatedAt": "2024-06-08T09:59:09.328Z",
+                    "UserName": "chougule"
+                },
+                "updatedAt": "2024-06-19T10:17:22.057Z"
+            },
+            {
+                "__v": 3,
+                "_id": "66727185ef6e486f530f96b8",
+                "content": "cute123544545",
+                "createdAt": "2024-06-19T05:49:57.998Z",
+                "likes": [],
+                "replies": [
+                    "6672817bef6e486f530f9728"
+                ],
+                "retweetBy": [],
+                "tweetedBy": {
+                    "__v": 0,
+                    "_id": "66642b6d4c113f04f3f275e8",
+                    "createdAt": "2024-06-08T09:59:09.328Z",
+                    "date_of_birth": null,
+                    "Email": "rahulchougule@gmail.com",
+                    "followers": [],
+                    "following": [],
+                    "Name": "rahul patil",
+                    "updatedAt": "2024-06-08T09:59:09.328Z",
+                    "UserName": "chougule"
+                },
+                "updatedAt": "2024-06-19T10:17:02.420Z"
+            },
+            {
+                "__v": 0,
+                "_id": "66727d3aef6e486f530f96c7",
+                "content": "hiii",
+                "createdAt": "2024-06-19T06:39:54.134Z",
+                "likes": [],
+                "replies": [],
+                "retweetBy": [],
+                "tweetedBy": {
+                    "__v": 0,
+                    "_id": "66642b6d4c113f04f3f275e8",
+                    "createdAt": "2024-06-08T09:59:09.328Z",
+                    "date_of_birth": null,
+                    "Email": "rahulchougule@gmail.com",
+                    "followers": [],
+                    "following": [],
+                    "Name": "rahul patil",
+                    "updatedAt": "2024-06-08T09:59:09.328Z",
+                    "UserName": "chougule"
+                },
+                "updatedAt": "2024-06-19T06:39:54.134Z"
+            }
+        ],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "6659b928c9e6329f40e09e85",
+            "createdAt": "2024-05-31T11:48:56.473Z",
+            "date_of_birth": "1999-01-01T00:00:00.000Z",
+            "Email": "arvindchougule1mane@gmail.com",
+            "followers": [],
+            "following": [],
+            "location": "sangola, maharashtra",
+            "Name": "Arvind mane",
+            "profle_picture": {
+                "destination": "./profile_img/",
+                "encoding": "7bit",
+                "fieldname": "profle_picture",
+                "filename": "profle_picture1717156136108-0.3537211572325403.jpg",
+                "mimetype": "image/jpeg",
+                "originalname": "02.jpg",
+                "path": "profile_img\\profle_picture1717156136108-0.3537211572325403.jpg",
+                "size": 106904
+            },
+            "updatedAt": "2024-05-31T11:48:56.473Z",
+            "UserName": "ABC345855"
+        },
+        "updatedAt": "2024-06-19T10:16:57.694Z"
+    },
+    {
+        "__v": 12,
+        "_id": "666cf35736ef5a4a8b6d16df",
+        "content": "have a fun",
+        "createdAt": "2024-06-15T01:50:15.555Z",
+        "image": "tweets\\image1718416215390-0.8321143639051793.jpg",
+        "likes": [],
+        "replies": [],
+        "retweetBy": [],
+        "tweetedBy": null,
+        "updatedAt": "2024-06-18T14:56:49.295Z"
+    },
+    {
+        "__v": 14,
+        "_id": "666fefda623e8032614b2f3c",
+        "content": "have a fun",
+        "createdAt": "2024-06-17T08:12:10.713Z",
+        "image": "tweets\\image1718611930538-0.37375087240936344.jpg",
+        "likes": [
+            {
+                "__v": 0,
+                "_id": "66642b6d4c113f04f3f275e8",
+                "createdAt": "2024-06-08T09:59:09.328Z",
+                "date_of_birth": null,
+                "Email": "rahulchougule@gmail.com",
+                "followers": [],
+                "following": [],
+                "Name": "rahul patil",
+                "updatedAt": "2024-06-08T09:59:09.328Z",
+                "UserName": "chougule"
+            }
+        ],
+        "replies": [
+            {
+                "__v": 0,
+                "_id": "6672af72796dd8ef333aee26",
+                "content": "sddsdsd",
+                "createdAt": "2024-06-19T10:14:10.429Z",
+                "likes": [],
+                "replies": [],
+                "retweetBy": [],
+                "tweetedBy": {
+                    "__v": 0,
+                    "_id": "66642b6d4c113f04f3f275e8",
+                    "createdAt": "2024-06-08T09:59:09.328Z",
+                    "date_of_birth": null,
+                    "Email": "rahulchougule@gmail.com",
+                    "followers": [],
+                    "following": [],
+                    "Name": "rahul patil",
+                    "updatedAt": "2024-06-08T09:59:09.328Z",
+                    "UserName": "chougule"
+                },
+                "updatedAt": "2024-06-19T10:14:10.429Z"
+            }
+        ],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "6659b928c9e6329f40e09e85",
+            "createdAt": "2024-05-31T11:48:56.473Z",
+            "date_of_birth": "1999-01-01T00:00:00.000Z",
+            "Email": "arvindchougule1mane@gmail.com",
+            "followers": [],
+            "following": [],
+            "location": "sangola, maharashtra",
+            "Name": "Arvind mane",
+            "profle_picture": {
+                "destination": "./profile_img/",
+                "encoding": "7bit",
+                "fieldname": "profle_picture",
+                "filename": "profle_picture1717156136108-0.3537211572325403.jpg",
+                "mimetype": "image/jpeg",
+                "originalname": "02.jpg",
+                "path": "profile_img\\profle_picture1717156136108-0.3537211572325403.jpg",
+                "size": 106904
+            },
+            "updatedAt": "2024-05-31T11:48:56.473Z",
+            "UserName": "ABC345855"
+        },
+        "updatedAt": "2024-06-19T10:14:10.533Z"
+    },
+    {
+        "__v": 7,
+        "_id": "666ff0983a48b4b24c388c40",
+        "content": "have a fun",
+        "createdAt": "2024-06-17T08:15:20.772Z",
+        "image": "tweets\\image1718612120508-0.9400614918337733.jpg",
+        "likes": [
+            {
+                "__v": 0,
+                "_id": "66642b6d4c113f04f3f275e8",
+                "createdAt": "2024-06-08T09:59:09.328Z",
+                "date_of_birth": null,
+                "Email": "rahulchougule@gmail.com",
+                "followers": [],
+                "following": [],
+                "Name": "rahul patil",
+                "updatedAt": "2024-06-08T09:59:09.328Z",
+                "UserName": "chougule"
+            }
+        ],
+        "replies": [],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "6659b928c9e6329f40e09e85",
+            "createdAt": "2024-05-31T11:48:56.473Z",
+            "date_of_birth": "1999-01-01T00:00:00.000Z",
+            "Email": "arvindchougule1mane@gmail.com",
+            "followers": [],
+            "following": [],
+            "location": "sangola, maharashtra",
+            "Name": "Arvind mane",
+            "profle_picture": {
+                "destination": "./profile_img/",
+                "encoding": "7bit",
+                "fieldname": "profle_picture",
+                "filename": "profle_picture1717156136108-0.3537211572325403.jpg",
+                "mimetype": "image/jpeg",
+                "originalname": "02.jpg",
+                "path": "profile_img\\profle_picture1717156136108-0.3537211572325403.jpg",
+                "size": 106904
+            },
+            "updatedAt": "2024-05-31T11:48:56.473Z",
+            "UserName": "ABC345855"
+        },
+        "updatedAt": "2024-06-18T14:56:53.467Z"
+    },
+    {
+        "__v": 2,
+        "_id": "66700a606545f97c4102c8bd",
+        "content": "have a fun",
+        "createdAt": "2024-06-17T10:05:21.058Z",
+        "image": "tweets\\image1718618720720-0.2740524022941111.jpg",
+        "likes": [],
+        "replies": [],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "6659b928c9e6329f40e09e85",
+            "createdAt": "2024-05-31T11:48:56.473Z",
+            "date_of_birth": "1999-01-01T00:00:00.000Z",
+            "Email": "arvindchougule1mane@gmail.com",
+            "followers": [],
+            "following": [],
+            "location": "sangola, maharashtra",
+            "Name": "Arvind mane",
+            "profle_picture": {
+                "destination": "./profile_img/",
+                "encoding": "7bit",
+                "fieldname": "profle_picture",
+                "filename": "profle_picture1717156136108-0.3537211572325403.jpg",
+                "mimetype": "image/jpeg",
+                "originalname": "02.jpg",
+                "path": "profile_img\\profle_picture1717156136108-0.3537211572325403.jpg",
+                "size": 106904
+            },
+            "updatedAt": "2024-05-31T11:48:56.473Z",
+            "UserName": "ABC345855"
+        },
+        "updatedAt": "2024-06-18T14:56:55.379Z"
+    },
+    {
+        "__v": 0,
+        "_id": "66700ac22d7b7e8d131c4259",
+        "content": "have a fun",
+        "createdAt": "2024-06-17T10:06:58.893Z",
+        "image": "tweets\\image1718618818508-0.5426269443414669.jpg",
+        "likes": [],
+        "replies": [],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "6659b928c9e6329f40e09e85",
+            "createdAt": "2024-05-31T11:48:56.473Z",
+            "date_of_birth": "1999-01-01T00:00:00.000Z",
+            "Email": "arvindchougule1mane@gmail.com",
+            "followers": [],
+            "following": [],
+            "location": "sangola, maharashtra",
+            "Name": "Arvind mane",
+            "profle_picture": {
+                "destination": "./profile_img/",
+                "encoding": "7bit",
+                "fieldname": "profle_picture",
+                "filename": "profle_picture1717156136108-0.3537211572325403.jpg",
+                "mimetype": "image/jpeg",
+                "originalname": "02.jpg",
+                "path": "profile_img\\profle_picture1717156136108-0.3537211572325403.jpg",
+                "size": 106904
+            },
+            "updatedAt": "2024-05-31T11:48:56.473Z",
+            "UserName": "ABC345855"
+        },
+        "updatedAt": "2024-06-17T10:06:58.893Z"
+    },
+    {
+        "__v": 0,
+        "_id": "66700d4dc0ad7207bb410ed1",
+        "content": "56565",
+        "createdAt": "2024-06-17T10:17:49.690Z",
+        "image": "tweets\\image1718619468509-0.1688830654918556.png",
+        "likes": [],
+        "replies": [],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "66642b6d4c113f04f3f275e8",
+            "createdAt": "2024-06-08T09:59:09.328Z",
+            "date_of_birth": null,
+            "Email": "rahulchougule@gmail.com",
+            "followers": [],
+            "following": [],
+            "Name": "rahul patil",
+            "updatedAt": "2024-06-08T09:59:09.328Z",
+            "UserName": "chougule"
+        },
+        "updatedAt": "2024-06-17T10:17:49.690Z"
+    },
+    {
+        "__v": 2,
+        "_id": "66700ef007cf6c18bbabfe7f",
+        "content": "56565",
+        "createdAt": "2024-06-17T10:24:48.791Z",
+        "image": "tweets\\image1718619888402-0.781492389499219.png",
+        "likes": [],
+        "replies": [],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "66642b6d4c113f04f3f275e8",
+            "createdAt": "2024-06-08T09:59:09.328Z",
+            "date_of_birth": null,
+            "Email": "rahulchougule@gmail.com",
+            "followers": [],
+            "following": [],
+            "Name": "rahul patil",
+            "updatedAt": "2024-06-08T09:59:09.328Z",
+            "UserName": "chougule"
+        },
+        "updatedAt": "2024-06-18T14:22:19.930Z"
+    },
+    {
+        "__v": 6,
+        "_id": "667270e917f764bffc21b9b1",
+        "content": "cute12354",
+        "createdAt": "2024-06-19T05:47:21.772Z",
+        "likes": [
+            {
+                "__v": 0,
+                "_id": "66642b6d4c113f04f3f275e8",
+                "createdAt": "2024-06-08T09:59:09.328Z",
+                "date_of_birth": null,
+                "Email": "rahulchougule@gmail.com",
+                "followers": [],
+                "following": [],
+                "Name": "rahul patil",
+                "updatedAt": "2024-06-08T09:59:09.328Z",
+                "UserName": "chougule"
+            }
+        ],
+        "replies": [
+            {
+                "__v": 0,
+                "_id": "66727fcaef6e486f530f96ea",
+                "content": "2555",
+                "createdAt": "2024-06-19T06:50:50.435Z",
+                "likes": [],
+                "replies": [],
+                "retweetBy": [],
+                "tweetedBy": {
+                    "__v": 0,
+                    "_id": "66642b6d4c113f04f3f275e8",
+                    "createdAt": "2024-06-08T09:59:09.328Z",
+                    "date_of_birth": null,
+                    "Email": "rahulchougule@gmail.com",
+                    "followers": [],
+                    "following": [],
+                    "Name": "rahul patil",
+                    "updatedAt": "2024-06-08T09:59:09.328Z",
+                    "UserName": "chougule"
+                },
+                "updatedAt": "2024-06-19T06:50:50.435Z"
+            },
+            {
+                "__v": 0,
+                "_id": "66728c29ef6e486f530f9745",
+                "content": "hhh",
+                "createdAt": "2024-06-19T07:43:37.320Z",
+                "likes": [],
+                "replies": [],
+                "retweetBy": [],
+                "tweetedBy": {
+                    "__v": 0,
+                    "_id": "66642b6d4c113f04f3f275e8",
+                    "createdAt": "2024-06-08T09:59:09.328Z",
+                    "date_of_birth": null,
+                    "Email": "rahulchougule@gmail.com",
+                    "followers": [],
+                    "following": [],
+                    "Name": "rahul patil",
+                    "updatedAt": "2024-06-08T09:59:09.328Z",
+                    "UserName": "chougule"
+                },
+                "updatedAt": "2024-06-19T07:43:37.320Z"
+            },
+            {
+                "__v": 0,
+                "_id": "6672b031796dd8ef333aee4b",
+                "content": "invalid",
+                "createdAt": "2024-06-19T10:17:21.879Z",
+                "likes": [],
+                "replies": [],
+                "retweetBy": [],
+                "tweetedBy": {
+                    "__v": 0,
+                    "_id": "66642b6d4c113f04f3f275e8",
+                    "createdAt": "2024-06-08T09:59:09.328Z",
+                    "date_of_birth": null,
+                    "Email": "rahulchougule@gmail.com",
+                    "followers": [],
+                    "following": [],
+                    "Name": "rahul patil",
+                    "updatedAt": "2024-06-08T09:59:09.328Z",
+                    "UserName": "chougule"
+                },
+                "updatedAt": "2024-06-19T10:17:21.879Z"
+            }
+        ],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "66642b6d4c113f04f3f275e8",
+            "createdAt": "2024-06-08T09:59:09.328Z",
+            "date_of_birth": null,
+            "Email": "rahulchougule@gmail.com",
+            "followers": [],
+            "following": [],
+            "Name": "rahul patil",
+            "updatedAt": "2024-06-08T09:59:09.328Z",
+            "UserName": "chougule"
+        },
+        "updatedAt": "2024-06-19T10:17:22.057Z"
+    },
+    {
+        "__v": 3,
+        "_id": "66727185ef6e486f530f96b8",
+        "content": "cute123544545",
+        "createdAt": "2024-06-19T05:49:57.998Z",
+        "likes": [],
+        "replies": [
+            {
+                "__v": 0,
+                "_id": "6672817bef6e486f530f9728",
+                "content": "665454",
+                "createdAt": "2024-06-19T06:58:03.994Z",
+                "likes": [],
+                "replies": [],
+                "retweetBy": [],
+                "tweetedBy": {
+                    "__v": 0,
+                    "_id": "66642b6d4c113f04f3f275e8",
+                    "createdAt": "2024-06-08T09:59:09.328Z",
+                    "date_of_birth": null,
+                    "Email": "rahulchougule@gmail.com",
+                    "followers": [],
+                    "following": [],
+                    "Name": "rahul patil",
+                    "updatedAt": "2024-06-08T09:59:09.328Z",
+                    "UserName": "chougule"
+                },
+                "updatedAt": "2024-06-19T06:58:03.994Z"
+            }
+        ],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "66642b6d4c113f04f3f275e8",
+            "createdAt": "2024-06-08T09:59:09.328Z",
+            "date_of_birth": null,
+            "Email": "rahulchougule@gmail.com",
+            "followers": [],
+            "following": [],
+            "Name": "rahul patil",
+            "updatedAt": "2024-06-08T09:59:09.328Z",
+            "UserName": "chougule"
+        },
+        "updatedAt": "2024-06-19T10:17:02.420Z"
+    },
+    {
+        "__v": 0,
+        "_id": "66727d3aef6e486f530f96c7",
+        "content": "hiii",
+        "createdAt": "2024-06-19T06:39:54.134Z",
+        "likes": [],
+        "replies": [],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "66642b6d4c113f04f3f275e8",
+            "createdAt": "2024-06-08T09:59:09.328Z",
+            "date_of_birth": null,
+            "Email": "rahulchougule@gmail.com",
+            "followers": [],
+            "following": [],
+            "Name": "rahul patil",
+            "updatedAt": "2024-06-08T09:59:09.328Z",
+            "UserName": "chougule"
+        },
+        "updatedAt": "2024-06-19T06:39:54.134Z"
+    },
+    {
+        "__v": 0,
+        "_id": "66727fcaef6e486f530f96ea",
+        "content": "2555",
+        "createdAt": "2024-06-19T06:50:50.435Z",
+        "likes": [],
+        "replies": [],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "66642b6d4c113f04f3f275e8",
+            "createdAt": "2024-06-08T09:59:09.328Z",
+            "date_of_birth": null,
+            "Email": "rahulchougule@gmail.com",
+            "followers": [],
+            "following": [],
+            "Name": "rahul patil",
+            "updatedAt": "2024-06-08T09:59:09.328Z",
+            "UserName": "chougule"
+        },
+        "updatedAt": "2024-06-19T06:50:50.435Z"
+    },
+    {
+        "__v": 0,
+        "_id": "6672817bef6e486f530f9728",
+        "content": "665454",
+        "createdAt": "2024-06-19T06:58:03.994Z",
+        "likes": [],
+        "replies": [],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "66642b6d4c113f04f3f275e8",
+            "createdAt": "2024-06-08T09:59:09.328Z",
+            "date_of_birth": null,
+            "Email": "rahulchougule@gmail.com",
+            "followers": [],
+            "following": [],
+            "Name": "rahul patil",
+            "updatedAt": "2024-06-08T09:59:09.328Z",
+            "UserName": "chougule"
+        },
+        "updatedAt": "2024-06-19T06:58:03.994Z"
+    },
+    {
+        "__v": 0,
+        "_id": "66728198ef6e486f530f972e",
+        "content": "4544",
+        "createdAt": "2024-06-19T06:58:32.085Z",
+        "likes": [],
+        "replies": [],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "66642b6d4c113f04f3f275e8",
+            "createdAt": "2024-06-08T09:59:09.328Z",
+            "date_of_birth": null,
+            "Email": "rahulchougule@gmail.com",
+            "followers": [],
+            "following": [],
+            "Name": "rahul patil",
+            "updatedAt": "2024-06-08T09:59:09.328Z",
+            "UserName": "chougule"
+        },
+        "updatedAt": "2024-06-19T06:58:32.085Z"
+    },
+    {
+        "__v": 0,
+        "_id": "66728c29ef6e486f530f9745",
+        "content": "hhh",
+        "createdAt": "2024-06-19T07:43:37.320Z",
+        "likes": [],
+        "replies": [],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "66642b6d4c113f04f3f275e8",
+            "createdAt": "2024-06-08T09:59:09.328Z",
+            "date_of_birth": null,
+            "Email": "rahulchougule@gmail.com",
+            "followers": [],
+            "following": [],
+            "Name": "rahul patil",
+            "updatedAt": "2024-06-08T09:59:09.328Z",
+            "UserName": "chougule"
+        },
+        "updatedAt": "2024-06-19T07:43:37.320Z"
+    },
+    {
+        "__v": 0,
+        "_id": "6672af72796dd8ef333aee26",
+        "content": "sddsdsd",
+        "createdAt": "2024-06-19T10:14:10.429Z",
+        "likes": [],
+        "replies": [],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "66642b6d4c113f04f3f275e8",
+            "createdAt": "2024-06-08T09:59:09.328Z",
+            "date_of_birth": null,
+            "Email": "rahulchougule@gmail.com",
+            "followers": [],
+            "following": [],
+            "Name": "rahul patil",
+            "updatedAt": "2024-06-08T09:59:09.328Z",
+            "UserName": "chougule"
+        },
+        "updatedAt": "2024-06-19T10:14:10.429Z"
+    },
+    {
+        "__v": 0,
+        "_id": "6672b031796dd8ef333aee4b",
+        "content": "invalid",
+        "createdAt": "2024-06-19T10:17:21.879Z",
+        "likes": [],
+        "replies": [],
+        "retweetBy": [],
+        "tweetedBy": {
+            "__v": 0,
+            "_id": "66642b6d4c113f04f3f275e8",
+            "createdAt": "2024-06-08T09:59:09.328Z",
+            "date_of_birth": null,
+            "Email": "rahulchougule@gmail.com",
+            "followers": [],
+            "following": [],
+            "Name": "rahul patil",
+            "updatedAt": "2024-06-08T09:59:09.328Z",
+            "UserName": "chougule"
+        },
+        "updatedAt": "2024-06-19T10:17:21.879Z"
+    }
+]

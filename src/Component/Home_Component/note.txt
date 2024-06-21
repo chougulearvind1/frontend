@@ -1,0 +1,96 @@
+
+  //  useEffect(() => {
+  //     const fetchdat = async () => {
+  //       try {
+  //         const tweetid='665a73077319fea6b0bb303e';
+  //         const token=Cookies.get('token')
+  //         const  resp= await axios.get(`http://localhost:5000/API/tweet/${tweetid}`,{headers:{Authorization:`Bearer ${token}`}})
+  //           setTweet(resp.data.message)
+  //           console.log(resp.data.message,'resp');
+            
+  //       } catch (error) {
+  //         console.log(error,'error');
+  //       }
+  //     }
+  //     fetchdat();
+  //    // eslint-disable-next-line
+  //  },[]) 
+
+
+
+   {Tweet.replies.map((reply:any)=>(
+                  <div> 
+                    {JSON.stringify(reply)}
+                    <Tweets tweet_data={reply} userId={userId}></Tweets>
+                  </div>
+                ))}
+
+
+
+
+
+map((reply:any)=>(
+                  <Tweets tweet_data={reply} userId={userId}></Tweets>
+                  ))
+
+
+
+                {
+                   if(typeof item==='object') {
+                      return Tweet.replies.map((reply:any)=>(                    
+                      <div>                     
+                        <Tweets tweet_data={reply} userId={userId}></Tweets>
+                      </div>
+                   ))
+                   }
+
+                   if(typeof item==='string') {
+                     populate(Tweet.replies)                 }
+                     }
+
+
+                const nestedreply = (reply: { replies: any[]; }) => {
+    return (
+      <div>
+        {JSON.stringify(reply)}
+        {
+          reply.replies.map((rp) => {
+           
+          <Tweets tweet_data={rp} userId={userId}></Tweets>
+          return nestedreply(rp);
+          }).join('')
+        }
+      </div>
+    )
+    
+  }
+
+
+
+      {Tweet.replies && Tweet.replies.length>0 && (
+          <div>
+                  {Tweet.replies.map((reply:any)=>(
+                  <div> 
+                    
+                    <Tweets tweet_data={reply} userId={userId}></Tweets>
+                  </div>
+                ))}
+
+          </div>
+       )}
+
+
+        {populate(Tweet.replies)}
+
+        {Tweet.replies && Tweet.replies.length>0 && (
+          <div>
+            {Tweet.replies.every((item:any)=>typeof item==='string') && populateTweet.current}
+            {Tweet.replies.every((item:any)=>typeof item==='object') &&  Tweet.replies.map((reply:any)=>(<Tweets key={reply._id} tweet_data={reply} userId={userId}></Tweets>))}                
+
+          </div>
+       )}
+         {Tweet.replies && Tweet?.replies.map((reply:any)=>(
+                  <div> 
+                    {JSON.stringify(reply)}
+                  </div>
+                ))}
