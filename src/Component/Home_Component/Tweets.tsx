@@ -21,7 +21,7 @@ console.log(Tweet,'Tweets');
   const [IsLiked, setIsLiked] = useState(false)
   const [LikeCount, setLikeCount] = useState('')
   const [ShowModal, setShowModal] = useState(false)
-  let populates:any;
+
   
   
 
@@ -40,34 +40,34 @@ console.log(Tweet,'Tweets');
   
           setIsLiked(Tweet.likes?.some((like:any)=>like?._id===userId))
           setLikeCount(Tweet.likes?.length)
-           async function populate(Arr:any[]):Promise<any[]> {
-                console.log(JSON.stringify(Arr),'arr')
-                let arr:(object|undefined)[]= new Array<object|undefined>(Arr.length)
-                let resp:AxiosResponse;
-              if(Arr.every((item: any)=>typeof item==='string'&&item!==null))
-                { 
-                  const promises=Arr.map(async (element: any,index:number) => {
-                    try {
-                      console.log(element,'element', index);
-                      resp= await axios.get(`http://localhost:5000/API/tweet/${element}`,{headers:{Authorization:`Bearer ${token}`}})
-                      arr[index]=resp.data.message;
-                      console.log(JSON.stringify(arr),'index');
-                    } catch (error) {
-                      console.error(error);
-                      arr[index]=undefined         
-                    }
-                  });
-                  await Promise.all(promises)     
-                }
-                return arr.map((reply:any)=>(
-                  <Tweets tweet_data={reply} userId={userId}></Tweets>
-                  ))
-                  
-              }
-              populates= populate(Tweet.replies)
+           
+              
         // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [])
-        
+        async function populate(Arr:any[]):Promise<any[]> {
+          console.log(JSON.stringify(Arr),'arr')
+          let arr:(object|undefined)[]= new Array<object|undefined>(Arr.length)
+          let resp:AxiosResponse;
+        if(Arr.every((item: any)=>typeof item==='string'&&item!==null))
+          { 
+            const promises=Arr.map(async (element: any,index:number) => {
+              try {
+                console.log(element,'element', index);
+                resp= await axios.get(`http://localhost:5000/API/tweet/${element}`,{headers:{Authorization:`Bearer ${token}`}})
+                arr[index]=resp.data.message;
+                console.log(JSON.stringify(arr),'index');
+              } catch (error) {
+                console.error(error);
+                arr[index]=undefined         
+              }
+            });
+            await Promise.all(promises)     
+          }
+          return arr.map((reply:any)=>(
+            <Tweets tweet_data={reply} userId={userId}></Tweets>
+            ))
+            
+        }
     
       
         
