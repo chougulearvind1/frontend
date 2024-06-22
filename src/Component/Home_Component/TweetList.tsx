@@ -11,6 +11,9 @@ const TweetList:React.FC=()=> {
     const [Tweetss, setTweetss] = useState<any>([])
     const [ShowModal, setShowModal] = useState(false);
     const id=Cookies.get('id')
+    let render=0
+    render=render+1
+    console.log(render,"render 0");
 
     const closeModal = () => {
       
@@ -42,9 +45,9 @@ const TweetList:React.FC=()=> {
       </div>
         <ul style={{padding:'0',margin:'0', height:'100vh',overflowY:'auto'}}>
            {Tweetss.map(
-            (tweet: any) => (
+            (tweet: any,index: React.Key | null | undefined) => (
                 <li className='mb-2' style={{listStyleType:'none',padding:'0',margin:'0'}}>
-                    <Tweets tweet_data={tweet} userId={id}></Tweets>
+                    <Tweets key={index} tweet_data={tweet} userId={id}></Tweets>
                 </li>
            )
            )}

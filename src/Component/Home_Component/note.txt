@@ -94,3 +94,11 @@ map((reply:any)=>(
                     {JSON.stringify(reply)}
                   </div>
                 ))}
+
+
+
+                if(Tweet.replies){
+        //   if(Tweet.replies.every((item:any)=>typeof item==='string')){
+        //   Tweet.replies.map((reply: any)=>(setTweet(populate(reply))))
+          
+        // }

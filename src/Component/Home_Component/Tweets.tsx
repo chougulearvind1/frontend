@@ -8,14 +8,20 @@ import axios, { AxiosResponse } from 'axios';
 import Cookies from 'js-cookie';
 import ReplyModal from './ReplyModal';
 
+
+
 interface Tweets_props{
   tweet_data:any,
   userId:any
 }
 
 const Tweets:React.FC<Tweets_props> = ({tweet_data,userId}) => {
-// const [Tweet, setTweet] = useState<any>({});
-const Tweet=tweet_data;
+   const Tweet=tweet_data;
+  const [NestedReplies, setNestedReplies] = useState<any>()
+  let render=0;
+  render=render+1;
+  console.log(render,"render 1");
+ 
 console.log(Tweet,'Tweets');
   const token=Cookies.get('token')
   const [IsLiked, setIsLiked] = useState(false)
@@ -36,38 +42,47 @@ console.log(Tweet,'Tweets');
     console.log(ShowModal,'showModal1');
     
   }
-        useEffect(() => {     
+  useEffect(() => {
+    setIsLiked(Tweet.likes?.some((like:any)=>like?._id===userId))
+    setLikeCount(Tweet.likes?.length)
+    console.log(IsLiked,"isliked",LikeCount,"likecount");
+    let render=0;
+  render=render+1;
+  console.log(render,"render 1");
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   
-          setIsLiked(Tweet.likes?.some((like:any)=>like?._id===userId))
-          setLikeCount(Tweet.likes?.length)
+        useEffect(() => {      
+        
+           async function populate(reply:any) 
+           {  console.log(JSON.stringify(Tweet.replies),"populate reply");
+             if(reply.replies && reply.replies.every((item:any)=>(typeof item === 'string')))
+                reply.replies.map(async (item: any)=>{
+                  try{
+                    const resp=await axios.post(`http://localhost:5000/API/tweet/${Tweet?._id}`,{},{headers:{Authorization:`Bearer ${token}`}})
+                    setNestedReplies(resp.data.message)
+                   Tweets(NestedReplies,userId)
+                  console.log(JSON.stringify(await resp.data.message),"populate response");
+                  
+                  }
+                  catch(error){
+                    console.log(error);
+                  }
+
+                })
+            }
            
+            if(Tweet.replies){
+              populate(Tweet.replies)
+            }
+          
+       
+        
               
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [])
-        async function populate(Arr:any[]):Promise<any[]> {
-          console.log(JSON.stringify(Arr),'arr')
-          let arr:(object|undefined)[]= new Array<object|undefined>(Arr.length)
-          let resp:AxiosResponse;
-        if(Arr.every((item: any)=>typeof item==='string'&&item!==null))
-          { 
-            const promises=Arr.map(async (element: any,index:number) => {
-              try {
-                console.log(element,'element', index);
-                resp= await axios.get(`http://localhost:5000/API/tweet/${element}`,{headers:{Authorization:`Bearer ${token}`}})
-                arr[index]=resp.data.message;
-                console.log(JSON.stringify(arr),'index');
-              } catch (error) {
-                console.error(error);
-                arr[index]=undefined         
-              }
-            });
-            await Promise.all(promises)     
-          }
-          return arr.map((reply:any)=>(
-            <Tweets tweet_data={reply} userId={userId}></Tweets>
-            ))
-            
-        }
+        }, [tweet_data])
+        
     
       
         
@@ -107,8 +122,8 @@ console.log(Tweet,'Tweets');
     <div>
           
           <ReplyModal show={ShowModal} closeModal={close} id={Tweet._id}></ReplyModal> 
-         {JSON.stringify(Tweet.replies)}
-      
+         <p style={{fontSize:'xx-small'}}>{JSON.stringify(Tweet.replies)}</p>
+         
         <div className="card d-flex" style={{flexDirection:'row'}}>
            <div style={{marginRight:'10px'}} className='col-1'>
                 <img style={{width:'60px',height:'60px'}} src={`http://localhost:5000/profile_img/${Tweet?.tweetedBy?.profle_picture?.filename}`} alt="" className="rounded-circle mr3" />
@@ -154,8 +169,8 @@ console.log(Tweet,'Tweets');
         
          {Tweet.replies && Tweet.replies.length>0 && (
           <div>
-            {/* {Tweet.replies.every((item:any)=>typeof item==='string') && populate(Tweet.replies)} */}
-            {Tweet.replies.every((item:any)=>typeof item==='object') &&  Tweet.replies.map((reply:any)=>(<Tweets key={reply._id} tweet_data={reply} userId={userId}></Tweets>))}                
+            {/* {Replies &&  Replies.map((reply:any)=>(<Tweets key={reply._id} tweet_data={reply} userId={userId}></Tweets>))} */}
+            {Tweet.replies &&  Tweet.replies.map((reply:any)=>(<Tweets key={reply._id} tweet_data={reply} userId={userId}></Tweets>))}                
 
           </div>
        )}
