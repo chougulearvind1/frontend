@@ -12,6 +12,7 @@ interface Modal_props{
 
 const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
   const [file, setFile] = useState<File|null>(null);
+  const [PreviewUrl, setPreviewUrl] = useState<string|null>(null)
   const [Content, setContent] = useState('');
   const fileInputRef = useRef<HTMLInputElement|null>(null);
   const token=Cookies.get('token')
@@ -24,6 +25,11 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
       if(e.target.files){
         const selectedFile=e.target.files[0]
         setFile(selectedFile)
+        const reader=new FileReader();
+        reader.onloadend=()=>{
+          setPreviewUrl(reader.result as string)
+        }
+        reader.readAsDataURL(selectedFile)
       }
     }
 
@@ -33,10 +39,13 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
     }
     
     const handleUpload = async () => {
-      if(!file){return }
+      // if(!file){return }
       const formdata=new FormData();
       formdata.append('content',Content)
-      formdata.append('image',file)
+      if(file){
+        formdata.append('image',file)
+      }
+      
      
       try {
         console.log(formdata,'formdata');
@@ -58,7 +67,7 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
     }
   
     const tab=-1;
-    console.log('tab index called ');
+   
   return (
      
     <div>
@@ -83,10 +92,15 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
       <button className="btn btn-link"onClick={HandleIconClick}>
                 <FontAwesomeIcon style={{fontSize:'40px'}}  icon={faImage } flip='both' />
      </button>
-     {File && <button onClick={handleUpload} className="btn btn-primary">Upload</button>}
+     {PreviewUrl && (
+        <div>
+          <img src={PreviewUrl} alt="Selected file" style={{ maxWidth: '100%', height: 'auto' }} />
+        </div>
+      )}
+     {/* {File && <button  className="btn btn-primary">Upload</button>} */}
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-primary">Tweet</button>
+        <button type="button" className="btn btn-primary" onClick={handleUpload}>Tweet</button>
         <button type="button" className="btn btn-secondary" data-dismiss="modal"onClick={closeModal}>Close</button>
       </div>
     </div>

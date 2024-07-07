@@ -102,3 +102,22 @@ map((reply:any)=>(
         //   Tweet.replies.map((reply: any)=>(setTweet(populate(reply))))
           
         // }
+
+
+
+         let Retwitter:any;
+            if(Tweet.retweetBy.every((item:any)=>typeof item==='object')){
+              Tweet.retweetBy.forEach((item: any) => {
+                   console.log(item,'items');
+                
+                Retwitter=Tweet;
+                Retwitter.ReTweetUser=item.UserName;                
+                 return Retwitter;
+                
+              });
+              OnRetweet(Retwitter)
+              console.log(Retwitter);
+              
+              
+                            
+            }
