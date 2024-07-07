@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import { toast,ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -17,6 +19,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
   
+    <ToastContainer position='top-left'></ToastContainer>
     <App />
   </React.StrictMode>
 );

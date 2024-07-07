@@ -3,6 +3,7 @@ import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, {  ReactNode, useRef, useState } from 'react'
+import { toast } from 'react-toastify';
 
 interface Modal_props{
   show:boolean,
@@ -59,9 +60,16 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
             }
           }
         const resp= await axios.post('http://localhost:5000/API/tweet/',formdata,config)
-        console.log('file uploaded sucessfully',resp.data);
+          if (resp.status===200) {
+            toast.success('Tweet sucessfully submited.')
+          } 
+       
       } catch (error) {
-        console.error('Error uploading file',error);
+        console.log(error,'error');
+         if(axios.isAxiosError(error)){
+          toast.error(error.response?.data.message)
+         }
+        
         
       }
     }
