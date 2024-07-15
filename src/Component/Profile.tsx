@@ -72,6 +72,16 @@ function Profile() {
           }      
     }
     }
+    const follow = async () => { 
+      const response = await axios.post(`http://localhost:5000/API/user/${userId}/follow`, fileArrayBuffer, {
+        headers: {
+          Authorization:`Bearer ${token}`,
+          'Content-Type': 'image/jpeg',
+        },
+      });
+
+      
+     }
    
      
   return (
@@ -111,7 +121,7 @@ function Profile() {
                                 <button className="edit-btn">Edit Details</button>
                             </div>):
                             (<div>
-                            <button  className="btn btn-dark">Follow</button>
+                            <button onClick={} className="btn btn-dark">Follow</button>
                           </div>)
                           }         
               
