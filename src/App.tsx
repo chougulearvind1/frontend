@@ -6,16 +6,22 @@ import { ToastContainer } from 'react-toastify';
 import Home from './Component/Home';
 import Register from './Component/register';
 import login from './Component/login';
+import Profile from './Component/Profile';
+
 
 function App() {
   return (
     <div >
      
+     
        <BrowserRouter>
        <Routes>
-        <Route path='/' Component={Home}></Route>
+        {/* <Route path='/' Component={Profile}></Route> */}
         <Route path='/register' Component={Register} ></Route>
         <Route path='/login' Component={login} ></Route>
+        <Route path='/profile/:userId' element={<Profile/>} ></Route>
+        <Route path='/profiles' Component={Home} ></Route>
+
        </Routes>
        </BrowserRouter>
        <ToastContainer></ToastContainer>

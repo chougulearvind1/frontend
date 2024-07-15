@@ -1,10 +1,11 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, {  memo, ReactNode,  useState } from 'react'
+import { toast } from 'react-toastify';
 
 interface Modal_props{
   show:boolean,  
-  closeModal:()=>void,
+  closeModal:(ReplyCount:any)=>any,
   id:string,
   children?:ReactNode
 }
@@ -42,10 +43,20 @@ const ReplyModal:React.FC<Modal_props>= ({show,closeModal,id}) => {
              'Authorization': `Bearer ${token}`
             }
           }
+          console.log('abcd');
         const resp= await axios.post(`http://localhost:5000/API/tweet/${id}/reply/`,formdata,config)
-        console.log('file uploaded sucessfully',resp.data);
+        
+       
+           toast.success(resp.data.message)
+           closeModal(resp.data.ReplyCount);
+
+      
+        
       } catch (error) {
-        console.error('Error uploading file',error);
+        if(axios.isAxiosError(error)){
+          toast.error(error.response?.data.message)
+        }
+       
         
       }
     }

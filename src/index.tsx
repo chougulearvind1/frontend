@@ -17,11 +17,15 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-  
+  // <React.StrictMode>
+  // </React.StrictMode>
+  <div>
     <ToastContainer position='top-left'></ToastContainer>
     <App />
-  </React.StrictMode>
+  </div>
+    
+    
+  
 );
 
 // If you want to start measuring performance in your app, pass a function

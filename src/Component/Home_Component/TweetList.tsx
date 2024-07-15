@@ -63,13 +63,7 @@ const TweetList:React.FC<TweetListProps> = ({AllTweet}) => {
          
       </div>
         <ul style={{padding:'0',margin:'0', height:'100vh',overflowY:'auto'}}>        
-          {/* If retweet has retweets of array then every tweet indicate name  on tweet  whoes is retweet */}
-          {/* {Retweet && Retweet.map((item:any,index:any)=> 
-            (<li  key={'b'+index} className='mb-2' style={{listStyleType:'none',padding:'0',margin:'0'}}>
-                  <Tweets  TweetData={item} userId={userId} OnReTweet={OnReTweet}></Tweets>
-              </li>)
-          )}        */}
-        {/* {JSON.stringify(TweetData)} */}
+          
         {NewTweet && (
           <li  key={NewTweet._id}  className='mb-2' style={{listStyleType:'none',padding:'0',margin:'0'}}>                  
                   <Tweets key={'a'} TweetData={NewTweet} userId={userId} OnReTweet={OnReTweet}></Tweets>                 

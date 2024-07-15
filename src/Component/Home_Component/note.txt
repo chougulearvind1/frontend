@@ -121,3 +121,8 @@ map((reply:any)=>(
               
                             
             }
+
+
+            http://localhost:5000/API/user/66573b51a455feb4f36b28f4/uploadProfilePic
+
+

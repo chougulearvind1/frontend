@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 interface Modal_props{
   show:boolean,
-  closeModal:()=>void,  
+  closeModal:(tweet:any)=>void,  
   children?:ReactNode
 }
 
@@ -59,8 +59,11 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
              'Authorization': `Bearer ${token}`
             }
           }
-        const resp= await axios.post('http://localhost:5000/API/tweet/',formdata,config)
+        const resp= await axios.post('http://localhost:5000/API/tweet/',formdata,config);
+        console.log(resp,'tweet created data');
           if (resp.status===200) {
+            
+            closeModal(resp.data.Tweet);
             toast.success('Tweet sucessfully submited.')
           } 
        
