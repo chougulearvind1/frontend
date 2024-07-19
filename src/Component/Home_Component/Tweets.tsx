@@ -1,6 +1,6 @@
 
 
-import React, { useEffect, useState} from 'react'
+import React, { memo, useEffect, useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faRetweet,faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularHeart,faComments } from '@fortawesome/free-regular-svg-icons';
@@ -9,19 +9,14 @@ import Cookies from 'js-cookie';
 import ReplyModal from './ReplyModal';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { profile } from 'console';
-
-
-
 
 interface Tweets_props{
   TweetData:any,
-  userId:any,
-  OnReTweet:any
+  userId:any,  
 
 }
-const Tweets:React.FC<Tweets_props> = ({TweetData,userId,OnReTweet}) => {  
-  const value1=Cookies.get('Name')
+const Tweets:React.FC<Tweets_props> = ({TweetData,userId}) => {  
+  const UserName=Cookies.get('UserName')
   const [Tweet, setTweet] = useState<any>(TweetData)
         
    const token=Cookies.get('token')   
@@ -39,7 +34,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId,OnReTweet}) => {
   }
   const close = (ReplyCount:any) => {  
     setReplyCount(ReplyCount)
-    console.log("close modal is called");
+  
     setShowModal(false);  
     
   }
@@ -80,7 +75,8 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId,OnReTweet}) => {
       const handleReTweet = async () => {
         try {
           const resp=await axios.post(`http://localhost:5000/API/tweet/${Tweet?._id}/retweet`,{},{headers:{Authorization:`Bearer ${token}`}})
-           resp.data.tweetedBy.Name=value1;
+          
+            resp.data.tweetedBy.UserName= UserName;
           setReTweet(resp.data)
           setReTweetCount(resp.data.count)
           toast.success(resp.data.message)
@@ -127,7 +123,6 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId,OnReTweet}) => {
       }     
         const navigate=useNavigate()
       const openProfile = (userId:any) => {
-        console.log(userId,'user id send');
         navigate(`/profile`,{ state: { userId } })
       }
 
@@ -143,20 +138,20 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId,OnReTweet}) => {
             } 
              setLikeCount(Tweet.likes?.length)            
               setReTweetCount(Tweet?.retweetBy?.length)
-              setReplyCount(Tweet.replies.length)
+              setReplyCount(Tweet?.replies?.length)
               
-              if(Tweet.retweetBy){
-                if(!Tweet.ReTweetUser){
-                OnReTweet(Tweet.retweetBy,Tweet) 
-               
-                }
-                
-              }
+             
                                    
           // eslint-disable-next-line react-hooks/exhaustive-deps
           },[])
             
             
+          useEffect(() => {
+            if(Tweet!==undefined)
+            console.log(Tweet,"tweet");
+          
+           
+          }, [Tweet])
           
           
 
@@ -188,7 +183,8 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId,OnReTweet}) => {
                         </div>
                         <div className="card-body">
                           <p className="mt-3">{Tweet?.content}</p> 
-                          <img src={`http://localhost:5000/${Tweet?.image}`} className="card-img-top" alt="Card"></img>
+                          {Tweet?.image &&  (<img src={`http://localhost:5000/${Tweet?.image}`} className="card-img-top" alt="Card"></img>)}
+                         
                                 
 
                         </div>
@@ -226,7 +222,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId,OnReTweet}) => {
                         {/* {Replies &&  Replies.map((reply:any)=>(<Tweets key={reply._id} tweet_data={reply} userId={userId}></Tweets>))} */}
                         {Tweet.replies.every((item: any)=>typeof item=='object') &&  Tweet.replies.map((reply:any,index:any)=>(
                             <div  key={Date()+index}>
-                              <Tweets key={Date()+index} TweetData={reply} userId={userId} OnReTweet={OnReTweet}></Tweets>
+                              <Tweets key={Date()+index} TweetData={reply} userId={userId} ></Tweets>
                             </div> ))}                
 
                       </div>
@@ -244,4 +240,4 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId,OnReTweet}) => {
   
 }
 
-export default Tweets
+export default memo(Tweets) 
