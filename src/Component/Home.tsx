@@ -1,18 +1,16 @@
 
-import {memo, useCallback, useEffect, useMemo, useState } from 'react'
+import {memo, useEffect, useMemo, useState } from 'react'
 import SideBar from './Home_Component/SideBar'
 import TweetList from './Home_Component/TweetList'
 import axios, { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
 import TweetModal from './Home_Component/TweetModal'
-import Tweets from './Home_Component/Tweets'
 
 
 const Home=()=>  {  
   const [AllTweet, setAllTweet] = useState<any[]>([])
   const [ShowModal, setShowModal] = useState(false);   
   const UserName=Cookies.get('UserName')
-  const userId=Cookies.get('id')
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -46,17 +44,15 @@ const Home=()=>  {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   
-  const closeModal = useCallback(
+  const closeModal = 
     (Tweet:any) => {
       setAllTweet((prevTweet) => [Tweet,...prevTweet] );
        setShowModal(false)
-    },
-    [],
-  )
-     const OpenModal = useCallback(() => {
+    }
+     const OpenModal = () => {
        setShowModal(true)
       
-     },[])
+     }
       
     console.log('home is rendered')
     //  AllTWeet is not run at every State Change so memo is used
@@ -71,7 +67,8 @@ const Home=()=>  {
            <SideBar></SideBar>
            </div>
            <div className="col-8">
-              <TweetModal show={ShowModal} closeModal={closeModal} > </TweetModal>   
+            {ShowModal && <TweetModal show={ShowModal} closeModal={closeModal} > </TweetModal> }
+                
               <div className="card d-flex p-3 mb-3"style={{flexDirection:'row',justifyContent:'space-between'}}>
               <h4>Home</h4>
               <button className="btn  btn-primary"onClick={OpenModal} data-toggle="modal" data-target="#exampleModal">Tweet</button>
@@ -80,7 +77,7 @@ const Home=()=>  {
               {
                AllTweetMemo
               }
-              
+
               
              
             
