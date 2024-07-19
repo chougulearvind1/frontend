@@ -11,7 +11,6 @@ import Tweets from './Home_Component/Tweets'
 const Home=()=>  {  
   const [AllTweet, setAllTweet] = useState<any[]>([])
   const [ShowModal, setShowModal] = useState(false);   
-  const [NewTweet, setNewTweet] = useState<any>()
   const UserName=Cookies.get('UserName')
   const userId=Cookies.get('id')
 
@@ -50,7 +49,6 @@ const Home=()=>  {
   const closeModal = useCallback(
     (Tweet:any) => {
       setAllTweet((prevTweet) => [Tweet,...prevTweet] );
-      setNewTweet(Tweet)
        setShowModal(false)
     },
     [],
@@ -78,15 +76,11 @@ const Home=()=>  {
               <h4>Home</h4>
               <button className="btn  btn-primary"onClick={OpenModal} data-toggle="modal" data-target="#exampleModal">Tweet</button>
               
-      </div>
-      {NewTweet && (
-          <li  key={NewTweet._id}  className='mb-2' style={{listStyleType:'none',padding:'0',margin:'0'}}>                  
-                  <Tweets key={NewTweet._id} TweetData={NewTweet} userId={userId} ></Tweets>                 
-              </li>
-        )}
+      </div>      
               {
                AllTweetMemo
               }
+              
               
              
             
