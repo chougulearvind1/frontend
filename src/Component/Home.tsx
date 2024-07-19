@@ -1,5 +1,5 @@
 
-import {memo, useCallback, useEffect, useRef, useState } from 'react'
+import {memo, useCallback, useEffect, useMemo, useState } from 'react'
 import SideBar from './Home_Component/SideBar'
 import TweetList from './Home_Component/TweetList'
 import axios, { AxiosResponse } from 'axios'
@@ -9,10 +9,8 @@ import Tweets from './Home_Component/Tweets'
 
 
 const Home=()=>  {  
-  const [AllTweet, setAllTweet] = useState<any>([])
-  // const [ShowModal, setShowModal] = useState(false);  
-  const ShowModal = useRef<boolean>()
-  ShowModal.current=false;
+  const [AllTweet, setAllTweet] = useState<any[]>([])
+  const [ShowModal, setShowModal] = useState(false);   
   const [NewTweet, setNewTweet] = useState<any>()
   const UserName=Cookies.get('UserName')
   const userId=Cookies.get('id')
@@ -48,21 +46,23 @@ const Home=()=>  {
     fetchdata()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-
+  
   const closeModal = useCallback(
     (Tweet:any) => {
+      setAllTweet((prevTweet) => [Tweet,...prevTweet] );
       setNewTweet(Tweet)
-      ShowModal.current=false
+       setShowModal(false)
     },
     [],
   )
      const OpenModal = useCallback(() => {
-       ShowModal.current=true
-       console.log(ShowModal.current,'openMoadal');
+       setShowModal(true)
+      
      },[])
       
-    console.log('home is rendered');
-     console.log(ShowModal.current,'ref');
+    console.log('home is rendered')
+    //  AllTWeet is not run at every State Change so memo is used
+    const AllTweetMemo= useMemo(() => <TweetList key={Date.now()} AllTweet={AllTweet}  ></TweetList> , [AllTweet]) 
     return (
       <div>
         <div className="row">
@@ -73,7 +73,7 @@ const Home=()=>  {
            <SideBar></SideBar>
            </div>
            <div className="col-8">
-              <TweetModal show={ShowModal.current} closeModal={closeModal} > </TweetModal>   
+              <TweetModal show={ShowModal} closeModal={closeModal} > </TweetModal>   
               <div className="card d-flex p-3 mb-3"style={{flexDirection:'row',justifyContent:'space-between'}}>
               <h4>Home</h4>
               <button className="btn  btn-primary"onClick={OpenModal} data-toggle="modal" data-target="#exampleModal">Tweet</button>
@@ -85,7 +85,7 @@ const Home=()=>  {
               </li>
         )}
               {
-                <TweetList key={Date.now()} AllTweet={AllTweet}  ></TweetList>
+               AllTweetMemo
               }
               
              
@@ -104,3 +104,4 @@ const Home=()=>  {
 
 
 export default memo(Home)
+ 
