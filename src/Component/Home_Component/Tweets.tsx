@@ -2,7 +2,7 @@
 
 import React, { memo, MouseEventHandler, useEffect, useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  faRetweet,faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
+import {  faRetweet,faTrashArrowUp,faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularHeart,faComments } from '@fortawesome/free-regular-svg-icons';
 import axios  from 'axios';
 import Cookies from 'js-cookie';
@@ -11,20 +11,22 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 interface Tweets_props{
-  TweetData:any
-  
+  TweetData:any,
+ DelTweet ?:(TweetforDelete: any) => void;
 }
-const Tweets:React.FC<Tweets_props> = ({TweetData}) => { 
+const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => { 
   const [Tweet, setTweet] = useState<any>(TweetData)
         
-   const token=Cookies.get('token') 
-   const userId=Cookies.get('id')  
+  const token=Cookies.get('token') 
+  const userId=Cookies.get('id')  
   const [IsLiked, setIsLiked] = useState()
   const [LikeCount, setLikeCount] = useState('')
   const [ShowModal, setShowModal] = useState(false) 
   const [ReTweetCount, setReTweetCount] = useState<any>()
   const [ReplyCount, setReplyCount] = useState<any>()
   const [ReTweet, setReTweet] = useState<any>()
+  const [DeleteTweetIconShowOrNot, setDeleteTweetIconShowOrNot] = useState<boolean>()
+  const [DeleteTweet, setDeleteTweet] = useState<boolean>(false)
 
 
 
@@ -136,11 +138,50 @@ const Tweets:React.FC<Tweets_props> = ({TweetData}) => {
              setLikeCount(Tweet.likes?.length)            
               setReTweetCount(Tweet?.retweetBy?.length)
               setReplyCount(Tweet?.replies?.length)
-              
+              if(Tweet.tweetedBy._id===userId){
+                  setDeleteTweetIconShowOrNot(true)
+              }else{
+                setDeleteTweetIconShowOrNot(false)
+              }
              
                                    
           // eslint-disable-next-line react-hooks/exhaustive-deps
-          },[])         
+          },[])   
+          useEffect(() => {
+            async function DeleteTweetFuncion() {
+              try {
+                
+                const resp=await axios.delete(`http://localhost:5000/API/tweet/${Tweet._id}`,{headers:{Authorization:`Bearer ${token}`}})
+                
+                toast.success(resp.data.message)
+                if(resp.status===200){
+                  if(DelTweet){
+                    console.log(Tweet,'deltweet');
+                    DelTweet(Tweet._id)
+                  }
+                  
+                }
+                
+      
+              } catch (error) {
+                
+                  if(axios.isAxiosError(error)){
+                    toast.error(error.response?.data)
+                  }
+                
+                console.error(error);
+                
+              }
+            }
+            
+            if(DeleteTweet){
+             
+                DeleteTweetFuncion()
+            }
+          
+            
+          }, [DelTweet, DeleteTweet, Tweet, Tweet._id, token])
+                
     const StopPropagation:MouseEventHandler<HTMLDivElement> = (event:React.MouseEvent<HTMLElement>) => { 
       event.stopPropagation()
      }    
@@ -182,6 +223,11 @@ const Tweets:React.FC<Tweets_props> = ({TweetData}) => {
                                 
 
                         </div>
+
+                        {DeleteTweetIconShowOrNot && (<div onClick={(event:any) => { StopPropagation(event); setDeleteTweet(true)}}style={{ top: '10px', right: '10px' ,position:'absolute'}}>
+                        <FontAwesomeIcon icon={faTrashArrowUp} beatFade size="lg" style={{color: "#000000",}} />
+                        </div>)}
+                        
                         <div className=" " >
                             {
                               IsLiked?

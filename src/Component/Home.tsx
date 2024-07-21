@@ -1,5 +1,5 @@
 
-import {memo, useEffect, useMemo, useState } from 'react'
+import {memo, useCallback, useEffect, useMemo, useState } from 'react'
 import SideBar from './Home_Component/SideBar'
 import TweetList from './Home_Component/TweetList'
 import axios, { AxiosResponse } from 'axios'
@@ -54,8 +54,12 @@ const Home=()=>  {
      }
       
     console.log('home is rendered')
+    const updatefunction = useCallback((updatedTweetData:any) => { 
+      console.log('you reached in home');
+       setAllTweet(updatedTweetData)
+     },[])
     //  AllTWeet is not run at every State Change so memo is used
-    const AllTweetMemo= useMemo(() => <TweetList key={Date.now()} AllTweet={AllTweet}  ></TweetList> , [AllTweet]) 
+    const AllTweetMemo= useMemo(() => <TweetList key={Date.now()} AllTweet={AllTweet} updatedTweets={updatefunction} ></TweetList> , [AllTweet, updatefunction]) 
     return (
       <div>
 

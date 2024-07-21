@@ -1,15 +1,16 @@
 
-import React, { memo, useMemo, useState } from 'react'
+import React, { memo, useCallback, useEffect, useMemo, useReducer, useState } from 'react'
 import Tweets from './Tweets';
 
 
 
 
 interface TweetListProps{
-  AllTweet:any
+  AllTweet:any,
+  updatedTweets?:(updateTweets: any) => void;
 }
-const TweetList:React.FC<TweetListProps> = ({AllTweet}) => { 
-  const [AllTweets, setAllTweets] = useState(AllTweet)  
+const TweetList:React.FC<TweetListProps> = ({AllTweet,updatedTweets}) => { 
+  const [AllTweets, setAllTweets] = useState<any[]>(AllTweet)  
   
         
       //  const [UpdatedReTweets, setUpdatedReTweets] = useState<any[]>()
@@ -29,23 +30,33 @@ const TweetList:React.FC<TweetListProps> = ({AllTweet}) => {
       // }   
 
         console.log(AllTweet, 'all tweet effect');
+        const DeleteTweet= useCallback(
+           async (TweetforDelete:any) => {
+             const filter=await Promise.all(AllTweets.filter((element) => {
+            return element._id!==TweetforDelete
+          }))     
+          if(updatedTweets)       
+            updatedTweets(filter)      
+            
+           },
+           [AllTweets, updatedTweets]
+         )
+         
        
        
-      const AllTWeetMemo= useMemo(() => {
-
-       
-     if(AllTweets!==undefined){
-         return(AllTweets.map(
-            (tweet: any,index: React.Key ) => (            
-              <li  key={'a'+index}  className='mb-2' style={{listStyleType:'none',padding:'0',margin:'0'}}>                  
-                    <Tweets key={'a'+index} TweetData={tweet} ></Tweets>                 
+      const AllTWeetMemo= useMemo(() => {       
+          if(AllTweets!==undefined){
+              return(AllTweets.map(
+                  (tweet: any ) => (            
+                    <li  key={tweet._id}  className='mb-2' style={{listStyleType:'none',padding:'0',margin:'0'}}>                  
+                          <Tweets key={tweet?._id} TweetData={tweet} DelTweet={DeleteTweet}></Tweets>                 
                 </li>)             
             ))
      }
              
         
-      }, [AllTweets])
-      
+      }, [AllTweets, DeleteTweet])
+     
    return(
     <div>
         
