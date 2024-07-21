@@ -1,6 +1,6 @@
 
 
-import React, { memo, useEffect, useState} from 'react'
+import React, { memo, MouseEventHandler, useEffect, useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faRetweet,faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularHeart,faComments } from '@fortawesome/free-regular-svg-icons';
@@ -11,20 +11,19 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 interface Tweets_props{
-  TweetData:any,
-  userId:any,  
-
+  TweetData:any
+  
 }
-const Tweets:React.FC<Tweets_props> = ({TweetData,userId}) => {  
-  const UserName=Cookies.get('UserName')
+const Tweets:React.FC<Tweets_props> = ({TweetData}) => { 
   const [Tweet, setTweet] = useState<any>(TweetData)
         
-   const token=Cookies.get('token')   
+   const token=Cookies.get('token') 
+   const userId=Cookies.get('id')  
   const [IsLiked, setIsLiked] = useState()
   const [LikeCount, setLikeCount] = useState('')
   const [ShowModal, setShowModal] = useState(false) 
   const [ReTweetCount, setReTweetCount] = useState<any>()
-  const [ReplyCount, setReplyCount] = useState()
+  const [ReplyCount, setReplyCount] = useState<any>()
   const [ReTweet, setReTweet] = useState<any>()
 
 
@@ -32,11 +31,11 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId}) => {
   const OpenModal = () => {
    setShowModal(true)   
   }
-  const close = (ReplyCount:any) => {  
-    setReplyCount(ReplyCount)
-  
-    setShowModal(false);  
-    
+  const close = (ReplyCount1:any) => {    
+     if(typeof ReplyCount1==='number'){
+      setReplyCount(ReplyCount1)
+     } 
+    setShowModal(false);      
   }
   
         // useEffect(() => {      
@@ -75,8 +74,6 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId}) => {
       const handleReTweet = async () => {
         try {
           const resp=await axios.post(`http://localhost:5000/API/tweet/${Tweet?._id}/retweet`,{},{headers:{Authorization:`Bearer ${token}`}})
-          
-            resp.data.tweetedBy.UserName= UserName;
           setReTweet(resp.data)
           setReTweetCount(resp.data.count)
           toast.success(resp.data.message)
@@ -88,7 +85,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId}) => {
         
       const handleLike = async () => {
         try {
-          
+          console.log('liked');
           const resp=await axios.post(`http://localhost:5000/API/tweet/${Tweet?._id}/like`,{},{headers:{Authorization:`Bearer ${token}`}})
           console.log(resp,"Tweet liked");
           toast.success(resp.data.message)
@@ -107,7 +104,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId}) => {
       }
       const handleDisLike = async () => {
         try {
-          
+          console.log('dislike');
           const resp=await axios.post(`http://localhost:5000/API/tweet/${Tweet?._id}/dislike`,{},{headers:{Authorization:`Bearer ${token}`}})
           toast.success(resp.data.message)
           setIsLiked( resp.data.IsLike);
@@ -123,7 +120,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId}) => {
       }     
         const navigate=useNavigate()
       const openProfile = (userId:any) => {
-        navigate(`/profile`,{ state: { userId } })
+        navigate(`/profile/${userId}`,{ state: { userId } })
       }
 
         
@@ -143,25 +140,21 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId}) => {
              
                                    
           // eslint-disable-next-line react-hooks/exhaustive-deps
-          },[])
-            
-            
-          useEffect(() => {
-            if(Tweet!==undefined)
-            console.log(Tweet,"tweet");
-          
-           
-          }, [Tweet])
-          
-          
-
+          },[])         
+    const StopPropagation:MouseEventHandler<HTMLDivElement> = (event:React.MouseEvent<HTMLElement>) => { 
+      event.stopPropagation()
+     }    
+    const handleCardClick:MouseEventHandler<HTMLDivElement> = (event:React.MouseEvent) => {
+      console.log('handle card click is called '); 
+       navigate(`/Tweets`,{ state: { Tweet }})       
+     }
 
   return (
     <div>
           <ReplyModal show={ShowModal} closeModal={close} id={Tweet._id}></ReplyModal> 
           
          
-        <div className="card " >
+        <div className="card " style={{backgroundColor:'#eee8ef'}} onClick={handleCardClick} onMouseEnter={(e:any) => {e.currentTarget.style.backgroundColor= '#dee1ef' }} onMouseLeave={(e:any) => {e.currentTarget.style.backgroundColor= '#eee8ef' }} >
              {ReTweet  && ( <div>
                   <FontAwesomeIcon icon={faRetweet} style={{color:'green',fontSize:'20px'}} /> 
                   <span>Retweeted by {ReTweet.ReTweetUser}</span>                 
@@ -177,7 +170,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId}) => {
                         <div className='col'>
                         
                           <div className="  d-flex align-item-center">               
-                            <h5 onClick={() => openProfile(Tweet.tweetedBy._id) } className="mb-0">@{Tweet?.tweetedBy?.UserName}</h5>
+                            <h5 onClick={(event:any) => { StopPropagation(event); openProfile(Tweet.tweetedBy._id)} } className="mb-0">@{Tweet?.tweetedBy?.UserName}</h5>
                             <small style={{marginTop:'auto',paddingLeft:'10px'}} className="text-muted">{new Date(Tweet?.createdAt).toLocaleString()}</small>
                                       
                         </div>
@@ -191,23 +184,23 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId}) => {
                         <div className=" " >
                             {
                               IsLiked?
-                            <button className="btn btn-link" onClick={handleDisLike}>
+                            <button className="btn btn-link" onClick={(event:any) => { StopPropagation(event); handleDisLike()}}>
                                 <FontAwesomeIcon icon={solidHeart } style={{fontSize:'20px',color:'red'}}/> <span>{ LikeCount} </span>
                             </button>
 
                             :
-                            <button className="btn btn-link" onClick={handleLike} >
+                            <button className="btn btn-link" onClick={(event:any) => { StopPropagation(event); handleLike()}}  >
 
                                 <FontAwesomeIcon icon={regularHeart} style={{fontSize:'20px',color:'red'}}/> <span> {LikeCount}  </span>
                             </button>
                             
                             }
                               
-                          <button className="btn btn-link" onClick={OpenModal}>
+                          <button className="btn btn-link" onClick={ (event:any) => { StopPropagation(event); OpenModal()} }>
                             <FontAwesomeIcon icon={faComments} style={{fontSize:'20px'}}/>
                             <span>{ReplyCount}</span>
                           </button>
-                          <button className="btn btn-link" onClick={handleReTweet}>
+                          <button className="btn btn-link" onClick={(event:any) => { StopPropagation(event); handleReTweet()}}>
                             <FontAwesomeIcon icon={faRetweet} style={{color:'green',fontSize:'20px'}} /> 
                             <span>{ReTweetCount}</span>
 
@@ -217,9 +210,9 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId}) => {
                     
                     <div className=''>
                     
-                    { Tweet.replies  && (
+                    {/* { Tweet.replies  && (
                       <div>
-                        {/* {Replies &&  Replies.map((reply:any)=>(<Tweets key={reply._id} tweet_data={reply} userId={userId}></Tweets>))} */}
+                        {/* {Replies &&  Replies.map((reply:any)=>(<Tweets key={reply._id} tweet_data={reply} userId={userId}></Tweets>))} 
                         {Tweet.replies.every((item: any)=>typeof item=='object') &&  Tweet.replies.map((reply:any,index:any)=>(
                             <div  key={Date()+index}>
                               <Tweets key={Date()+index} TweetData={reply} userId={userId} ></Tweets>
@@ -227,7 +220,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,userId}) => {
 
                       </div>
                   )}
-                    
+                     */}
                     </div>        
                     </div>
             </div>

@@ -4,6 +4,8 @@ import './profile.css'
 import { useParams } from 'react-router-dom'
 import axios, { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
+import { toast } from 'react-toastify'
+import TweetList from './Home_Component/TweetList'
 
 function Profile() {
 
@@ -13,13 +15,14 @@ function Profile() {
     const {userId}=useParams<{ userId: string }>()
     const [UserData, setUserData] = useState<any|undefined>(undefined)
     const [LoggedUserOrNot, setLoggedUserOrNot] = useState(false)
+    const [UserTweetsAndReplies, setUserTweetsAndReplies] = useState<any>()
     
     useEffect(() => {
       
         const fetch = async () => {          
           const resp: AxiosResponse= await axios.get(`http://localhost:5000/API/user/${userId}`,{headers:{Authorization:`Bearer ${token}`}})
-            setUserData(await resp.data)  
-                                 
+            setUserData(await resp.data.user)  
+            setUserTweetsAndReplies(await resp.data.UserTweets)                   
          }
          if(userId!==undefined){
           fetch(); 
@@ -33,6 +36,9 @@ function Profile() {
       };
     
     const [ProfileImage, setProfileImage] = useState<string|undefined>(undefined)
+    const [FollowOrUnFollow, setFollowOrUnFollow] = useState<boolean>(false);
+   
+    
 
     useEffect(() => {
 
@@ -40,13 +46,18 @@ function Profile() {
          setProfileImage(`http://localhost:5000/profile_img/${UserData?.profle_picture.filename}`)
          if(id===UserData._id){
               setLoggedUserOrNot(true)
-         } 
+              
+         }      
+           if(UserData.followers.some((user:any) =>  user._id===id )){            
+                      setFollowOrUnFollow(true)
+           }  
+           console.log(UserData,'Userdata');      
          }           
-    }, [UserData,id])   
+    }, [ UserData, id])   
 
     async function handleImageChange(event: ChangeEvent<HTMLInputElement>): Promise<void> {
         const file = event.target.files?.[0];
-        console.log('handle image change called');
+      
          if (file && userId) {
       
          const reader = new FileReader();
@@ -73,31 +84,37 @@ function Profile() {
     }
     }
     const follow = async () => { 
-      const response = await axios.post(`http://localhost:5000/API/user/${userId}/follow`, fileArrayBuffer, {
+      const response = await axios.post(`http://localhost:5000/API/user/${userId}/follow`, {}, {
         headers: {
           Authorization:`Bearer ${token}`,
-          'Content-Type': 'image/jpeg',
+          'Content-Type': 'application/json',
         },
-      });
+      });      
+      if(response.status){
+        toast.success(response.data.message)
+        setFollowOrUnFollow(true)
+      }
+     }   
 
-      
+     const Unfollow = async () => { 
+      const response = await axios.post(`http://localhost:5000/API/user/${userId}/unfollow`, {}, {
+        headers: {
+          Authorization:`Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });      
+      if(response.status){
+        toast.success(response.data.message)
+        setFollowOrUnFollow(false)
+      }
      }
-   
+    
      
   return (
-    <div>Profile
-<div>
-        <div className="row">
-           <div className="col-1">
-
-           </div>
-           <div className="col-2">
-           <SideBar></SideBar>
-           </div>
-           <div className="col-8">
-           <div className="profile-page">
+    <div>
+       <div className="profile-page">
       <div className="profile-header">
-        <div className="profile-image-container">
+        <div style={{zIndex:5}} className="profile-image-container">
           <img
             src={ProfileImage}
             alt="Profile"
@@ -121,67 +138,60 @@ function Profile() {
                                 <button className="edit-btn">Edit Details</button>
                             </div>):
                             (<div>
-                            <button onClick={} className="btn btn-dark">Follow</button>
+                              
+                            {FollowOrUnFollow ?(<button onClick={Unfollow} style={{margin:'10px'}} className="btn btn-dark">UnFollow</button>):
+                            (<button onClick={follow} className="btn btn-dark">Follow</button>)}
+                            
                           </div>)
                           }         
               
                        
                 </div>
+                
         <div className="profile-info">
           <h1 className="profile-name">{UserData?.Name}</h1>
           <p className="profile-username">@{UserData?.UserName}</p>
           <div className="profile-details">
             <div className="detail-item">
               <span className="detail-icon">🎂</span>
-              <span>Date of Birth: January 1, 1990</span>
+              <span>Date of Birth: {UserData?.date_of_birth}</span>
             </div>
             <div className="detail-item">
               <span className="detail-icon">📅</span>
-              <span>Joined: January 1, 2020</span>
+              <span>Joined: {UserData?.createdAt}</span>
             </div>
             <div className="detail-item">
               <span className="detail-icon">📍</span>
-              <span>Address: 1234 Elm Street, Springfield</span>
+              <span>Address: {UserData?.location}</span>
             </div>
           </div>
           <div className="profile-stats">
             <div className="stats-item">
-              <span className="stats-number">500</span>
+              <span className="stats-number">{UserData?.following.length}</span>
               <span className="stats-label">Following</span>
             </div>
             <div className="stats-item">
-              <span className="stats-number">1.2K</span>
+              <span className="stats-number">{UserData?.followers.length}</span>
               <span className="stats-label">Followers</span>
             </div>
           </div>
           <div className="tweet-section">
-            <div className="tweet-container">
-              <h2>Tweets & Replies</h2>
+               <TweetList key={Date.now()} AllTweet={UserTweetsAndReplies}></TweetList>
+            {/* <div className="tweet-container"style={{width:'-webkit-fill-available'}}>
+              <h2 style={{textAlign:'center'}}>Tweets & Replies</h2>
               <div className="tweet">
                 <p><strong>@johndoe</strong> Just enjoying the day! 🌞</p>
               </div>
               <div className="tweet">
                 <p><strong>@johndoe</strong> Excited for the weekend! 🎉</p>
               </div>
-              {/* Add more tweets or replies as needed */}
-            </div>
+              
+            </div> */}
           </div>
         </div>
         
       </div>
-    </div>
-             
-            
-           </div>
-           <div className="col-1">
-
-           </div>
-            
         </div>
-       
-
-      </div>
-
     </div>
   )
 }

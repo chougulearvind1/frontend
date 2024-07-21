@@ -27,8 +27,8 @@
   
   .profile-body {
     background-color: white;
-    padding: 20px;
-    margin-top: 70px;
+    padding: 15px;
+    padding-top: 75px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position:relative;
@@ -84,8 +84,8 @@
   }
   .top-right {
     position: absolute;
-    top: -10px; /* Adjust as needed */
-    right: 10px; /* Adjust as needed */
+    top: 20px; 
+    right: 20px; 
   }
   .profile-actions {
     display: flex;

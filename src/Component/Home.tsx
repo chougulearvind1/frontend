@@ -16,7 +16,6 @@ const Home=()=>  {
     const fetchdata = async () => {
      const resp:AxiosResponse= await axios.get('http://localhost:5000/API/tweet/')
      if(!resp){throw new Error('network response was not ok')}
-      console.log('fetch data  is called');
      // Flatten the array of tweets including their retweets
      const allTweetsWithRetweets = [];
         for (const tweet of await resp.data.message) {
@@ -59,36 +58,17 @@ const Home=()=>  {
     const AllTweetMemo= useMemo(() => <TweetList key={Date.now()} AllTweet={AllTweet}  ></TweetList> , [AllTweet]) 
     return (
       <div>
-        <div className="row">
-           <div className="col-1">
 
-           </div>
-           <div className="col-2">
-           <SideBar></SideBar>
-           </div>
-           <div className="col-8">
-            {ShowModal && <TweetModal show={ShowModal} closeModal={closeModal} > </TweetModal> }
+          {ShowModal && <TweetModal show={ShowModal} closeModal={closeModal} > </TweetModal> }
                 
-              <div className="card d-flex p-3 mb-3"style={{flexDirection:'row',justifyContent:'space-between'}}>
-              <h4>Home</h4>
-              <button className="btn  btn-primary"onClick={OpenModal} data-toggle="modal" data-target="#exampleModal">Tweet</button>
-              
-      </div>      
-              {
-               AllTweetMemo
-              }
-
-              
-             
-            
-           </div>
-           <div className="col-1">
-
-           </div>
-            
-        </div>
-       
-
+          <div  className="card d-flex p-3 mb-3"style={{flexDirection:'row',justifyContent:'space-between', backgroundColor:'#eee8ef'}}>
+                <h4>Home</h4>
+                <button className="btn  btn-primary"onClick={OpenModal} data-toggle="modal" data-target="#exampleModal">Tweet</button>
+                
+        </div>      
+                {
+                 AllTweetMemo
+                }
       </div>
     )
   }

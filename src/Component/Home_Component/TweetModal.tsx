@@ -12,12 +12,15 @@ interface Modal_props{
 }
 
 const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
+  console.log(show,'tweetModal');
   const [file, setFile] = useState<File|null>(null);
-  const [PreviewUrl, setPreviewUrl] = useState<string|null>(null)
-  const [Content, setContent] = useState('');
+  const [PreviewUrl, setPreviewUrl] = useState<string>('')
+  const [Content, setContent] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement|null>(null);
   const token=Cookies.get('token')
-
+  
+   
+ 
   const HandleIconClick = () => { if (fileInputRef.current) {
     fileInputRef.current.click()
   } }
@@ -49,7 +52,7 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
       
      
       try {
-        console.log(formdata,'formdata');
+        
         formdata.forEach((value, key) => {
           console.log(`${key}: ${value}`);
         });
@@ -59,26 +62,24 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
              'Authorization': `Bearer ${token}`
             }
           }
-        const resp= await axios.post('http://localhost:5000/API/tweet/',formdata,config);
-        console.log(resp,'tweet created data');
-          if (resp.status===200) {
-            
-            closeModal(resp.data.Tweet);
-            toast.success('Tweet sucessfully submited.')
+        const resp= await axios.post('http://localhost:5000/API/tweet/',formdata,config);       
+         if (await resp.status===200) {        
+            console.log(resp.data,'tweetmodal data');
+           toast.success(resp.data.message)
           } 
+        
+          closeModal(await resp.data.Tweet);
        
       } catch (error) {
         console.log(error,'error');
          if(axios.isAxiosError(error)){
           toast.error(error.response?.data.message)
          }
-        
-        
       }
     }
   
     const tab=-1;
-   
+    
   return (
      
     <div>

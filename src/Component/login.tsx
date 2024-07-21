@@ -42,6 +42,7 @@ function Login() {
         Cookies.set('Name',resp.data.Name ,{expires:1})
         Cookies.set('UserName',resp.data.UserName ,{expires:1})
         Cookies.set('id',resp.data.id,{expires:1})
+        Cookies.set('user', JSON.stringify(resp.data),{expires:1})
 
 
         const value=Cookies.get('token')

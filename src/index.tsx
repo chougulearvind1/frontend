@@ -17,12 +17,13 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  // <React.StrictMode>
-  // </React.StrictMode>
-  <div>
+  <React.StrictMode>
+    <div style={{backgroundColor:'#eee8ef'}}>
     <ToastContainer position='top-left'></ToastContainer>
     <App />
   </div>
+  </React.StrictMode>
+  
     
     
   
