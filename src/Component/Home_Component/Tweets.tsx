@@ -144,17 +144,18 @@ const Tweets:React.FC<Tweets_props> = ({TweetData}) => {
     const StopPropagation:MouseEventHandler<HTMLDivElement> = (event:React.MouseEvent<HTMLElement>) => { 
       event.stopPropagation()
      }    
-    const handleCardClick:MouseEventHandler<HTMLDivElement> = (event:React.MouseEvent) => {
-      console.log('handle card click is called '); 
-       navigate(`/Tweets`,{ state: { Tweet }})       
-     }
+    
+    const cardClick = (Tweets: any) => {
+      console.log(Tweets,'selected tweet');
+      navigate(`/Tweets`,{ state: { Tweets }})
+    }
 
   return (
     <div>
           <ReplyModal show={ShowModal} closeModal={close} id={Tweet._id}></ReplyModal> 
           
          
-        <div className="card " style={{backgroundColor:'#eee8ef'}} onClick={handleCardClick} onMouseEnter={(e:any) => {e.currentTarget.style.backgroundColor= '#dee1ef' }} onMouseLeave={(e:any) => {e.currentTarget.style.backgroundColor= '#eee8ef' }} >
+        <div className="card " style={{backgroundColor:'#eee8ef'}} onClick={() => { cardClick(Tweet) }} onMouseEnter={(e:any) => {e.currentTarget.style.backgroundColor= '#dee1ef' }} onMouseLeave={(e:any) => {e.currentTarget.style.backgroundColor= '#eee8ef' }} >
              {ReTweet  && ( <div>
                   <FontAwesomeIcon icon={faRetweet} style={{color:'green',fontSize:'20px'}} /> 
                   <span>Retweeted by {ReTweet.ReTweetUser}</span>                 
