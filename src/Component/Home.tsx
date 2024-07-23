@@ -53,9 +53,9 @@ const Home=()=>  {
       
      }
       
-    console.log('home is rendered')
+    
     const updatefunction = useCallback((updatedTweetData:any) => { 
-      console.log('you reached in home');
+     
        setAllTweet(updatedTweetData)
      },[])
     //  AllTWeet is not run at every State Change so memo is used

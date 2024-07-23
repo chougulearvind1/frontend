@@ -1,11 +1,11 @@
-import React, { ChangeEvent, memo, useEffect, useRef, useState } from 'react'
-import SideBar from './Home_Component/SideBar'
+import React, { ChangeEvent, memo, useEffect, useMemo, useRef, useState } from 'react'
 import './profile.css'
 import { useParams } from 'react-router-dom'
 import axios, { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
 import { toast } from 'react-toastify'
 import TweetList from './Home_Component/TweetList'
+import EditProfile from './Profile_component/EditProfile'
 
 function Profile() {
 
@@ -16,6 +16,7 @@ function Profile() {
     const [UserData, setUserData] = useState<any|undefined>(undefined)
     const [LoggedUserOrNot, setLoggedUserOrNot] = useState(false)
     const [UserTweetsAndReplies, setUserTweetsAndReplies] = useState<any>()
+    const [EditProfileModal, setEditProfileModal] = useState<boolean>(false)
     
     useEffect(() => {
       
@@ -109,10 +110,14 @@ function Profile() {
       }
      }
     
-     
+    
+    const  UserTweetsAndRepliesMemo=useMemo(() => <TweetList key={Date.now()} AllTweet={UserTweetsAndReplies}></TweetList>, [UserTweetsAndReplies])
   return (
     <div>
        <div className="profile-page">
+       {/* {EditProfileModal && <EditProfile  EditModal1={EditModal()}></EditProfile>} */}
+       {EditProfileModal&&<EditProfile closeModal={() => { setEditProfileModal(false) } }  ></EditProfile>}
+       
       <div className="profile-header">
         <div style={{zIndex:5}} className="profile-image-container">
           <img
@@ -135,7 +140,8 @@ function Profile() {
                                         onChange={handleImageChange}
                                     />
                                 <button   onClick={handleUpload}className="upload-btn">Upload Profile Photo</button>
-                                <button className="edit-btn">Edit Details</button>
+                                <button onClick={() => { setEditProfileModal(true) }} className="edit-btn">Edit </button>
+                                
                             </div>):
                             (<div>
                               
@@ -176,17 +182,9 @@ function Profile() {
             </div>
           </div>
           <div className="tweet-section">
-               <TweetList key={Date.now()} AllTweet={UserTweetsAndReplies}></TweetList>
-            {/* <div className="tweet-container"style={{width:'-webkit-fill-available'}}>
-              <h2 style={{textAlign:'center'}}>Tweets & Replies</h2>
-              <div className="tweet">
-                <p><strong>@johndoe</strong> Just enjoying the day! 🌞</p>
-              </div>
-              <div className="tweet">
-                <p><strong>@johndoe</strong> Excited for the weekend! 🎉</p>
-              </div>
-              
-            </div> */}
+            {UserTweetsAndRepliesMemo}
+               
+           
           </div>
         </div>
         

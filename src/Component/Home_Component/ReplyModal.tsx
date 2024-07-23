@@ -33,10 +33,7 @@ const ReplyModal:React.FC<Modal_props>= ({show,closeModal,id}) => {
      
      
       try {
-        console.log(formdata,'formdata');
-        formdata.forEach((value, key) => {
-          console.log(`${key}: ${value}`);
-        });
+        
         const config={
           headers:{  
             'Content-Type': 'application/json',

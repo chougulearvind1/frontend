@@ -15,8 +15,7 @@ interface Tweets_props{
  DelTweet ?:(TweetforDelete: any) => void;
 }
 const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => { 
-  const [Tweet, setTweet] = useState<any>(TweetData)
-        
+  const [Tweet, setTweet] = useState<any>(TweetData)        
   const token=Cookies.get('token') 
   const userId=Cookies.get('id')  
   const [IsLiked, setIsLiked] = useState()
@@ -87,26 +86,18 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
         
       const handleLike = async () => {
         try {
-          console.log('liked');
           const resp=await axios.post(`http://localhost:5000/API/tweet/${Tweet?._id}/like`,{},{headers:{Authorization:`Bearer ${token}`}})
-          console.log(resp,"Tweet liked");
           toast.success(resp.data.message)
           setIsLiked( resp.data.IsLike);
           setLikeCount(resp.data.LikeCount)
 
-        } catch (error) {
-          
+        } catch (error) {          
             if(axios.isAxiosError(error)){
               toast.error(error.response?.data)
-            }
-          
-          console.error(error);
-          
-        }
-      }
+            }          
+        }      }
       const handleDisLike = async () => {
         try {
-          console.log('dislike');
           const resp=await axios.post(`http://localhost:5000/API/tweet/${Tweet?._id}/dislike`,{},{headers:{Authorization:`Bearer ${token}`}})
           toast.success(resp.data.message)
           setIsLiked( resp.data.IsLike);
@@ -115,9 +106,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
           if(axios.isAxiosError(error))
           {
             toast.error(error.response?.data.message)
-          }
-          console.error(error);
-          
+          }          
         }
       }     
         const navigate=useNavigate()
@@ -155,30 +144,20 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
                 
                 toast.success(resp.data.message)
                 if(resp.status===200){
-                  if(DelTweet){
-                    console.log(Tweet,'deltweet');
+                  if(DelTweet){                   
                     DelTweet(Tweet._id)
-                  }
-                  
-                }
-                
-      
+                  }                
+                }    
               } catch (error) {
                 
                   if(axios.isAxiosError(error)){
                     toast.error(error.response?.data)
-                  }
-                
-                console.error(error);
-                
+                  }                
               }
-            }
-            
-            if(DeleteTweet){
-             
+            }            
+            if(DeleteTweet){             
                 DeleteTweetFuncion()
-            }
-          
+            }    
             
           }, [DelTweet, DeleteTweet, Tweet, Tweet._id, token])
                 
