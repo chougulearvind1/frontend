@@ -2,8 +2,8 @@
 
 import React, { memo, MouseEventHandler, useEffect, useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  faRetweet,faTrashArrowUp,faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
-import { faHeart as regularHeart,faComments } from '@fortawesome/free-regular-svg-icons';
+import {  faRetweet,faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as regularHeart,faComments, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import axios  from 'axios';
 import Cookies from 'js-cookie';
 import ReplyModal from './ReplyModal';
@@ -15,7 +15,7 @@ interface Tweets_props{
  DelTweet ?:(TweetforDelete: any) => void;
 }
 const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => { 
-  const [Tweet, setTweet] = useState<any>(TweetData)        
+  const [Tweet] = useState<any>(TweetData)        
   const token=Cookies.get('token') 
   const userId=Cookies.get('id')  
   const [IsLiked, setIsLiked] = useState()
@@ -204,7 +204,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
                         </div>
 
                         {DeleteTweetIconShowOrNot && (<div onClick={(event:any) => { StopPropagation(event); setDeleteTweet(true)}}style={{ top: '10px', right: '10px' ,position:'absolute'}}>
-                        <FontAwesomeIcon icon={faTrashArrowUp} beatFade size="lg" style={{color: "#000000",}} />
+                        <FontAwesomeIcon icon={faTrashCan} style={{color: "#000000",}} />
                         </div>)}
                         
                         <div className=" " >

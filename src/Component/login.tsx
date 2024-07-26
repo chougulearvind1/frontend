@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import img from '../PAFF_121515_linguisticcuessocialidentity_newsfeature.jpg'
 import axios, {  AxiosRequestConfig } from 'axios'
 import Cookies from 'js-cookie'
+import './login.css'
 
 
 interface form_error{
@@ -74,30 +75,70 @@ function Login() {
       setForm_Data({...Form_Data,[name]:value})
       console.log(Form_Data,'handle form data ');
     }
+    const styles = {
+      container: {
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        paddingRight: '15px',
+        paddingLeft: '15px',
+        alignItems: 'center',
+        width:'95vw',
+        height:'95vh',
+        overflow:'clip'
+   
+        
+      
+      }
+    }
 
   return (
-    <div className="container "style={{position:'absolute',left:'50%',top:'50%',WebkitTransform:'translate(-50%, -50%)'}}>
-     <div className="row  justify-content-center" >
-        <div className={`col-md-4 `}>
-            <div  style={{display:'grid',placeItems:'center',width:'100%',height:'100%',backgroundColor:'#00affe'}}>
-                <h2 style={{position:'absolute',color:'white',marginBottom:'20%'}}>Welcome Back</h2>
-                <img style={{width:'60%',height:'30%'}} src={img} alt="" />
-            </div>
-            
+    <div style={styles.container} className="row justify-content-center col-md- ">
+     <div style={{width:'auto'}} className="row  justify-content-center " >
+      <div className="card-group">
+        <div className="card text-white  py-5 " style={{backgroundColor:'#00affe'}}>
+          <div className="card-body text-center">
+                <h2 >Welcome Back</h2>
+                <img className="img-fluid" style={{maxWidth:'50%'}} src={img} alt="" />
+          </div>   
         </div>
-        <div className="col-md-5 " >
-            <div style={{marginTop:'4%',marginBottom:'4%'}}><h2>Login</h2></div>
+        <div className="card">
+          <div className="card-body">
+            <h1>
+              Login
+            </h1>
+            <p className="text-muted">
+            Sign In to your account
+            </p>   
             
             <form action="" method="" onSubmit={Submit}>
-               <div className="mb-2 "><input type="text" name="UserName" id="" className={`form-control ${Errors.UserName?'is-invalid':''}`} placeholder='Enter User Name'value={Form_Data.UserName}onChange={handle}/>{Errors.UserName && <div className='invalid-feedback'>{Errors.UserName}</div> }</div>
-               <div className="mb-2 "><input type="text" name="password" id="" className={`form-control ${Errors.password?'is-invalid':''}`} placeholder='Enter password' value={Form_Data.password} onChange={handle}/>{Errors.password && <div className="invalid-feedback">{Errors.password}</div> }</div>
-               <div className="mb-2 "><input type="submit" value="Register" className="btn btn-dark" /></div>
-               <div className="text-center">
-               <p className="mb-3">Not registered? <a href="/Register">Register here</a></p>
-               </div>
+
+              <div className="input-group mb-3">
+                    <span className="input-group-text"><i className="fa fa-user"></i></span>
+                    <input type="text" name="UserName" id="" className={`form-control ${Errors.UserName?'is-invalid':''}`} placeholder='Enter User Name'value={Form_Data.UserName}onChange={handle}/>{Errors.UserName && <div className='invalid-feedback'>{Errors.UserName}</div> }
+                </div>
+               <div className="input-group mb-3">
+                  <span className="input-group-text"><i className="fa fa-lock"></i></span>
+                  <input type="text" name="password" id="" className={`form-control ${Errors.password?'is-invalid':''}`} placeholder='Enter password' value={Form_Data.password} onChange={handle}/>{Errors.password && <div className="invalid-feedback">{Errors.password}</div> }
+                </div>
+                
+                <div className="row">
+                <div className="col-6">
+                  <button type="submit" className="btn btn-primary px-4">Login</button>
+                </div>
+                <div className="col-6 text-right">
+                <p className="mb-3">Not registered? <a href="/Register">Register here</a></p>
+                </div>
+              </div>         
 
             </form>
         </div>
+          
+         
+        </div>
+      </div>
+        
+        
+        
      </div>
    </div>
   )

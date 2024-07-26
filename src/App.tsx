@@ -1,55 +1,51 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
-import {Route, BrowserRouter, Routes } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-
-import Home from './Component/Home';
-import Register from './Component/register';
-import login from './Component/login';
-import Profile from './Component/Profile';
 import SideBar from './Component/Home_Component/SideBar';
+import { Link, Route, Routes } from 'react-router-dom';
 import TweetReplies from './Component/TweetReplies';
+import Profile from './Component/Profile';
+import Home from './Component/Home';
+
 
 
 
 function App() {
-  console.log('app is called');
+
+  useEffect(() => {
+  const rootElement = document.getElementById('root');
+  if (rootElement) {
+    rootElement.style.backgroundColor = '#eee8ef';
+  }
+}, [])
+ 
   return (
-    <div >
-        
-        <div className="row">
+
+        <div className="row" style={{}}>
            <div className="col-1">
 
            </div>
-           <div className="col-2">
+           <div className="col-2 ">
            <SideBar></SideBar>
            </div>
-           <div className="col-8">
-              <BrowserRouter>
-                <Routes>
-                  <Route path='/' Component={Home}></Route>
-                  <Route path='/register' Component={Register} ></Route>
-                  <Route path='/login' Component={login} ></Route>
+           <div className="col-6" >
+           <Routes>
                   <Route path='/profile/:userId' element={<Profile/>} ></Route>
                   <Route path='/Tweets' Component={TweetReplies}></Route>
+                  <Route path='Home' Component={Home}></Route>
+                  <Route path='/' Component={Home}></Route>
                   
-
-                </Routes>
-                </BrowserRouter>      
+           </Routes>
                 
             
            </div>
-           <div className="col-1">
+           <div className="col-2">
 
            </div>
-            
+             {/* <ToastContainer></ToastContainer> */}
         </div>
      
         
-     
-       <ToastContainer></ToastContainer>
-      
-    </div>
+    
   );
 }
 

@@ -22,13 +22,26 @@ function Profile() {
       
         const fetch = async () => {          
           const resp: AxiosResponse= await axios.get(`http://localhost:5000/API/user/${userId}`,{headers:{Authorization:`Bearer ${token}`}})
-            setUserData(await resp.data.user)  
-            setUserTweetsAndReplies(await resp.data.UserTweets)                   
+            setUserData(await resp.data.user) 
+                             
          }
          if(userId!==undefined){
           fetch(); 
          }  
     }, [userId,token])
+    useEffect(() => {
+      const fetch = async () => {          
+        const resp: AxiosResponse= await axios.post(`http://localhost:5000/API/user/${UserData._id}/tweets`,{},{headers:{Authorization:`Bearer ${token}`}})
+          
+          setUserTweetsAndReplies(await resp.data.UserTweets)                   
+       }
+       if(UserData!==undefined){
+        fetch(); 
+       }  
+    
+      
+    }, [UserData, token])
+    
     const fileInputRef = useRef<HTMLInputElement>(null)
    
     const handleUpload = async () => {
@@ -139,8 +152,8 @@ function Profile() {
                                         style={{ display: 'none' }}
                                         onChange={handleImageChange}
                                     />
-                                <button   onClick={handleUpload}className="upload-btn">Upload Profile Photo</button>
-                                <button onClick={() => { setEditProfileModal(true) }} className="edit-btn">Edit </button>
+                                <button   onClick={handleUpload}className="btn btn-outline-primary">Upload Profile Photo</button>
+                                <button onClick={() => { setEditProfileModal(true) }} className="btn btn-outline-dark">Edit </button>
                                 
                             </div>):
                             (<div>
@@ -182,6 +195,7 @@ function Profile() {
             </div>
           </div>
           <div className="tweet-section">
+            <h3>Tweets and Replies</h3>
             {UserTweetsAndRepliesMemo}
                
            

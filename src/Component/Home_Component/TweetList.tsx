@@ -1,5 +1,5 @@
 
-import React, { memo, useCallback, useEffect, useMemo, useReducer, useState } from 'react'
+import React, { memo, useCallback,  useMemo,  useState } from 'react'
 import Tweets from './Tweets';
 
 
@@ -48,7 +48,7 @@ const TweetList:React.FC<TweetListProps> = ({AllTweet,updatedTweets}) => {
           if(AllTweets!==undefined){
               return(AllTweets.map(
                   (tweet: any ) => (            
-                    <li  key={tweet._id}  className='mb-2' style={{listStyleType:'none',padding:'0',margin:'0'}}>                  
+                    <li  key={tweet._id}  className='' style={{listStyleType:'none',padding:'0',margin:'0'}}>                  
                           <Tweets key={tweet?._id} TweetData={tweet} DelTweet={DeleteTweet}></Tweets>                 
                 </li>)             
             ))
@@ -60,7 +60,7 @@ const TweetList:React.FC<TweetListProps> = ({AllTweet,updatedTweets}) => {
    return(
     <div>
         
-        <ul style={{padding:'0',margin:'0', height:'100vh',overflowY:'auto'}}>        
+        <ul style={{padding:'0',margin:'0'}}>        
           
        
         {  AllTWeetMemo  }

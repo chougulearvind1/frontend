@@ -1,6 +1,5 @@
 
-import {memo, useCallback, useEffect, useMemo, useState } from 'react'
-import SideBar from './Home_Component/SideBar'
+import {memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import TweetList from './Home_Component/TweetList'
 import axios, { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
@@ -11,6 +10,9 @@ const Home=()=>  {
   const [AllTweet, setAllTweet] = useState<any[]>([])
   const [ShowModal, setShowModal] = useState(false);   
   const UserName=Cookies.get('UserName')
+
+  const parentRef = useRef<HTMLDivElement>(null);
+  const childRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -40,6 +42,23 @@ const Home=()=>  {
        setAllTweet(allTweetsWithRetweets)    
     }
     fetchdata()
+      const innerDiv=childRef.current;
+     
+      const ScrollBody = () => {
+          const scrollTop=document.getElementById('root')?.scrollTop
+        if(innerDiv && scrollTop){
+          innerDiv.scrollTop=scrollTop;
+        }        
+      }
+      
+        window.addEventListener('scroll',ScrollBody)
+      
+      return () => {
+        
+        window.removeEventListener('scroll', ScrollBody);
+        
+      };
+    
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   
@@ -59,20 +78,24 @@ const Home=()=>  {
        setAllTweet(updatedTweetData)
      },[])
     //  AllTWeet is not run at every State Change so memo is used
-    const AllTweetMemo= useMemo(() => <TweetList key={Date.now()} AllTweet={AllTweet} updatedTweets={updatefunction} ></TweetList> , [AllTweet, updatefunction]) 
+    const AllTweetMemo= useMemo(() => <TweetList  key={Date.now()} AllTweet={AllTweet} updatedTweets={updatefunction} ></TweetList> , [AllTweet, updatefunction]) 
     return (
-      <div>
+      <div ref={childRef}  className='card p-4'style={{backgroundColor:'#eee8ef'}}>
 
           {ShowModal && <TweetModal show={ShowModal} closeModal={closeModal} > </TweetModal> }
-                
-          <div  className="card d-flex p-3 mb-3"style={{flexDirection:'row',justifyContent:'space-between', backgroundColor:'#eee8ef'}}>
+          <div style={{position:'sticky',zIndex:'10',top:'0'}}>
+            <div  className=" d-flex  mb-3"style={{flexDirection:'row',justifyContent:'space-between', backgroundColor:'#eee8ef'}}>
                 <h4>Home</h4>
                 <button className="btn  btn-primary"onClick={OpenModal} data-toggle="modal" data-target="#exampleModal">Tweet</button>
                 
-        </div>      
-                {
-                 AllTweetMemo
+        </div>  
+          </div>
+              
+        <div >
+          { AllTweetMemo
                 }
+        </div>
+                
       </div>
     )
   }
