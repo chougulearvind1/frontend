@@ -1,6 +1,7 @@
-import React from 'react'
 import  "./SideBar.css";
-import img from "./tweet.png";
+import img from "../../PAFF_121515_linguisticcuessocialidentity_newsfeature.jpg";
+
+
 import Cookies from 'js-cookie';
 
 
@@ -30,13 +31,13 @@ function SideBar() {
    
 
   return (
-   <div className=" d-flex align-content-between flex-wrap align-ite-start"style={{height:'95vh',overflow:'hidden',position:'sticky',top:'0' }}>
+   <div className=" d-flex align-content-between flex-wrap align-item-center"style={{height:'95vh',overflow:'hidden',position:'sticky',top:'0' }}>
      <nav className="navbar navbar-expand-lg">
       <div className="">
        
-        <ul className="navbar-nav flex-column ">
-        <li className="nav-item"><a href="/" className="">
-          <img style={{width:"50%"}} src={img} alt="img" />      
+        <ul className="navbar-nav d-flex  flex-column align-item-center ">
+        <li className=""><a href="/" className="img-fluid" style={{display:'flex',justifyContent:'center'}}>
+          <img style={{ width:"160px",height:'80px'}} src={img} alt="img" />      
         </a></li>
          
           <li className="nav-item"><a href="/" className="nav-link"><div><svg xmlns="http://www.w3.org/2000/svg" width="45" height="30" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
@@ -54,25 +55,86 @@ function SideBar() {
       </div>
      </nav>
 
-     <div>
+     <div className='nav-item'>
               <div className="d-flex">
-                <div className=" d-flex align-item-center">
+                <div className=" d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="45" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
                       </svg>
                   </div>
                     <div>
-                      <h5 style={{margin:'auto'}}>{Name}</h5>
-                       <h7 style={{margin:'auto'}}>@{UserName}</h7>                  
+                      <h6 style={{margin:'auto',fontFamily:'auto'}}>{Name.charAt(0).toUpperCase()+Name.slice(1)}</h6>
+                       <h6 className={'text-muted'} style={{margin:'auto'}}>@{UserName}</h6>                  
                     </div>                  
                 
                 
               </div>
     </div>
+    <style>
+        {` 
+          h4:hover{
+          text-decoration:underline;
+          }
 
+          button>span{
+              font-size: larger;
+
+          }
+           .nav-item>a{
+          
+            padding:0 10px;
+            border-radius:15px;
+           }
+            .nav-item>a:hover{
+              
+              background-color:	#00aced
+             }
+          /* Default styles for all screen sizes */
+          .nav-item {
+            font-size: 1rem;
+            padding: 5px;
+            margin-bottom:5%;
+            width:100%
+            
+          }
+
+          /* Increase size for medium screens (md) and up */
+          @media (min-width: 768px) {
+            .nav-item {
+              transform: scale(1.2);
+              transform-origin: top left;
+            }
+          }
+
+          /* Increase size for large screens (lg) and up */
+          @media (min-width: 992px) {
+            .nav-item {
+              transform: scale(1.3);
+              transform-origin: top left;
+            }
+          }
+
+          /* Increase size for extra large screens (xl) and up */
+          @media (min-width: 1200px) {
+            .nav-item {
+              transform: scale(1.4);
+              transform-origin: top left;
+            }
+          }
+
+          /* Increase size for extra extra large screens (xxl) and up */
+          @media (min-width: 1400px) {
+            .nav-item {
+              transform: scale(1.4);
+              transform-origin: top left;
+            }
+          }
+        `}
+      </style>
 
    </div>
+
   )
 }
 

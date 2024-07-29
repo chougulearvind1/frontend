@@ -80,20 +80,19 @@ const Home=()=>  {
     //  AllTWeet is not run at every State Change so memo is used
     const AllTweetMemo= useMemo(() => <TweetList  key={Date.now()} AllTweet={AllTweet} updatedTweets={updatefunction} ></TweetList> , [AllTweet, updatefunction]) 
     return (
-      <div ref={childRef}  className='card p-4'style={{backgroundColor:'#eee8ef'}}>
+      <div ref={childRef}  className='card p-4'style={{backgroundColor:'#ffffff'}}>
 
           {ShowModal && <TweetModal show={ShowModal} closeModal={closeModal} > </TweetModal> }
           <div style={{position:'sticky',zIndex:'10',top:'0'}}>
-            <div  className=" d-flex  mb-3"style={{flexDirection:'row',justifyContent:'space-between', backgroundColor:'#eee8ef'}}>
-                <h4>Home</h4>
-                <button className="btn  btn-primary"onClick={OpenModal} data-toggle="modal" data-target="#exampleModal">Tweet</button>
+            <div  className=" d-flex  mb-3"style={{flexDirection:'row',justifyContent:'space-between', backgroundColor:'#ffffff'}}>
+                <h3>Home</h3>
+                <button className="btn " style={{backgroundColor:'#1ba1ef'}} onClick={OpenModal} data-toggle="modal" data-target="#exampleModal">Tweet</button>
                 
         </div>  
           </div>
               
         <div >
-          { AllTweetMemo
-                }
+          { AllTweetMemo }
         </div>
                 
       </div>

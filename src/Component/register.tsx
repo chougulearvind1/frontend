@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import img from '../PAFF_121515_linguisticcuessocialidentity_newsfeature.jpg'
 import axios, { AxiosRequestConfig } from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 
 interface form_error{
@@ -43,9 +45,9 @@ function Register() {
     })
    
     const [confirm_password, setconfirm_password] = useState('')
-    
+    const Navigate=useNavigate() ;
+    //  Here we cheacks  validation  of feild on client side before send
    const validate = async ()=> {
-    console.log('vlidadtion is callled ');
      let errors:form_error={
          Name: '',
          UserName: '',
@@ -64,19 +66,19 @@ function Register() {
                 "Content-Type":"application/json"
             }
         }
-        console.log(Form_Data,'from data');
         const resp=await axios.post<registeration>('http://localhost:5000/API/auth/register',Form_Data,config);
-        console.log(resp,"resp");
+         
         if((await resp).data.success){
         
-           console.log("Registration sucessful");            
+          toast.success(resp.data.message) 
+          
+          Navigate('/login')
+                
         }
         
      } catch (error:any) {
 
-        let str=  error.response.data.errors as keyof form_error
-         errors[str]=error.response.data.message;
-       console.log( errors[str],'error str');
+      toast.error(error.response.data.message)
         
 
      }
@@ -109,11 +111,11 @@ function Register() {
    }
    }
    
-  
-  
+   
+    //registratin feild and two  card combine under card groups    
   return (
-   <div className="container d-flex"style={{marginRight:'auto',marginLeft:'auto',paddingRight:'15px',paddingLeft:'15px',alignItems:'center',width:'95vw',height:'95vh'}}>
-     <div className="row  justify-content-center" >
+   <div className=" d-flex justify-content-center"style={{marginRight:'auto',marginLeft:'auto',paddingRight:'15px',paddingLeft:'15px',alignItems:'center',width:'95vw',height:'95vh'}}>
+     <div className="row  justify-content-center" > 
         <div className="card-group">
             <div className="card text-white py-5"style={{background:'#00affe'}}>
             <div className="card-body text-center d-flex justify-content-center align-items-center flex-column">

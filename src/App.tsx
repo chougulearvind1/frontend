@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import SideBar from './Component/Home_Component/SideBar';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import TweetReplies from './Component/TweetReplies';
 import Profile from './Component/Profile';
 import Home from './Component/Home';
@@ -14,20 +14,20 @@ function App() {
   useEffect(() => {
   const rootElement = document.getElementById('root');
   if (rootElement) {
-    rootElement.style.backgroundColor = '#eee8ef';
+    rootElement.style.backgroundColor = '#ffffff';
   }
 }, [])
  
   return (
 
         <div className="row" style={{}}>
-           <div className="col-1">
+           <div className="col-1 col-md-1 col-lg-1 d-none d-md-block">
 
            </div>
-           <div className="col-2 ">
+           <div className="col-3 col-sm-3 col-md-2  ">
            <SideBar></SideBar>
            </div>
-           <div className="col-6" >
+           <div className="col-6  col-sm-9  col-md-6" >
            <Routes>
                   <Route path='/profile/:userId' element={<Profile/>} ></Route>
                   <Route path='/Tweets' Component={TweetReplies}></Route>
@@ -38,7 +38,7 @@ function App() {
                 
             
            </div>
-           <div className="col-2">
+           <div className="col-2  d-none col-md-2 col-md-block">
 
            </div>
              {/* <ToastContainer></ToastContainer> */}

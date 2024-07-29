@@ -38,39 +38,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
      } 
     setShowModal(false);      
   }
-  
-        // useEffect(() => {      
-        //    async function populate(reply:any) 
-        //    {  
-        //      console.log(Tweet._id,'tweet id');
-        //      if(reply && reply.every((item:any)=>(typeof item === 'string')))
-        //         {
-        //           reply.map(async (item: any,index:any)=>{
-        //           try{
-        //             console.log(JSON.stringify(item),'item',Tweet.id)
-        //             const resp=await axios.get(`http://localhost:5000/API/tweet/${item}`,{headers:{Authorization:`Bearer ${token}`}})
-        //              Tweet.replies[index]= await resp.data.message;
-        //              setTweet(Tweet.replies[index])
-                  
-        //           }
-        //           catch(error){
-        //             console.log(error);
-        //           }
 
-        //         })
-        //         }
-                
-        //     }
-           
-        //     if(Tweet.replies){
-        //       populate(Tweet.replies)
-              
-        //     }         
-       
-           
-              
-        // // eslint-disable-next-line react-hooks/exhaustive-deps
-        // }, [Tweet])    
     
       const handleReTweet = async () => {
         try {
@@ -175,7 +143,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
           <ReplyModal show={ShowModal} closeModal={close} id={Tweet._id}></ReplyModal> 
           
          
-        <div className="card " style={{backgroundColor:'#eee8ef'}} onClick={() => { cardClick(Tweet) }} onMouseEnter={(e:any) => {e.currentTarget.style.backgroundColor= '#dee1ef' }} onMouseLeave={(e:any) => {e.currentTarget.style.backgroundColor= '#eee8ef' }} >
+        <div className="card " style={{backgroundColor:'#ffffff'}} onClick={() => { cardClick(Tweet) }} onMouseEnter={(e:any) => {e.currentTarget.style.backgroundColor= '#c0deed' }} onMouseLeave={(e:any) => {e.currentTarget.style.backgroundColor= '#ffffff' }} >
              {ReTweet  && ( <div>
                   <FontAwesomeIcon icon={faRetweet} style={{color:'green',fontSize:'20px'}} /> 
                   <span>Retweeted by {ReTweet.ReTweetUser}</span>                 
@@ -185,52 +153,55 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
                   <span>Retweeted by {Tweet.ReTweetUser}</span>                 
                </div> )}
             <div className="d-flex" style={{flexDirection:'row'}}>
-                          <div style={{marginRight:'10px'}} className='col-1'>
-                            <img style={{width:'60px',height:'60px'}} src={`http://localhost:5000/profile_img/${Tweet?.tweetedBy?.profle_picture?.filename}`} alt="" className="rounded-circle mr3" />
+                          <div style={{}} className='col-auto'>
+                            <img style={{width:'70px',height:'70px',margin:'5px'}} src={`http://localhost:5000/profile_img/${Tweet?.tweetedBy?.profle_picture?.filename}`} alt="" className="rounded-circle mr3" />
                         </div>
-                        <div className='col'>
+                        <div className='col p-1 pt-2'>
                         
                           <div className="  d-flex align-item-center">               
-                            <h5 onClick={(event:any) => { StopPropagation(event); openProfile(Tweet.tweetedBy._id)} } className="mb-0">@{Tweet?.tweetedBy?.UserName}</h5>
-                            <small style={{marginTop:'auto',paddingLeft:'10px'}} className="text-muted">{new Date(Tweet?.createdAt).toLocaleString()}</small>
+                            <h4 onClick={(event:any) => { StopPropagation(event); openProfile(Tweet.tweetedBy._id)} } className="mb-0">@{Tweet?.tweetedBy?.UserName}</h4>
+                            <small style={{margin:'auto 0',paddingLeft:'10px',fontSize:'large'}} className="text-muted"> - {new Date(Tweet?.createdAt).toLocaleString('en-US',{weekday: 'long',month: 'long',day: 'numeric',year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</small>
                                       
                         </div>
-                        <div className="card-body">
-                          <p className="mt-3">{Tweet?.content}</p> 
+                        <div className="card-body" style={{paddingBottom:'0'}}>
+                          <p style={{fontSize:'larger'}} className="">{Tweet?.content}</p> 
                           {Tweet?.image &&  (<img src={`http://localhost:5000/${Tweet?.image}`} className="card-img-top" alt="Card"></img>)}
                          
                                 
 
                         </div>
 
-                        {DeleteTweetIconShowOrNot && (<div onClick={(event:any) => { StopPropagation(event); setDeleteTweet(true)}}style={{ top: '10px', right: '10px' ,position:'absolute'}}>
-                        <FontAwesomeIcon icon={faTrashCan} style={{color: "#000000",}} />
+                        {DeleteTweetIconShowOrNot && (<div onClick={(event:any) => { StopPropagation(event); setDeleteTweet(true)}}style={{ top: '10px', right: '10px' ,position:'absolute',cursor:'pointer'}}>
+                        <FontAwesomeIcon icon={faTrashCan} style={{color: "#000000",}} size={'lg'}/>
                         </div>)}
                         
-                        <div className=" " >
+                        <div className="d-flex justify-content-around" >
                             {
                               IsLiked?
                             <button className="btn btn-link" onClick={(event:any) => { StopPropagation(event); handleDisLike()}}>
-                                <FontAwesomeIcon icon={solidHeart } style={{fontSize:'20px',color:'red'}}/> <span>{ LikeCount} </span>
+                                <FontAwesomeIcon icon={solidHeart } style={{fontSize:'25px',color:'red'}}/> <span>{ LikeCount} </span>
                             </button>
 
                             :
                             <button className="btn btn-link" onClick={(event:any) => { StopPropagation(event); handleLike()}}  >
 
-                                <FontAwesomeIcon icon={regularHeart} style={{fontSize:'20px',color:'red'}}/> <span> {LikeCount}  </span>
+                                <FontAwesomeIcon icon={regularHeart} style={{fontSize:'25px',color:'red'}}/> <span> {LikeCount}  </span>
                             </button>
                             
                             }
                               
-                          <button className="btn btn-link" onClick={ (event:any) => { StopPropagation(event); OpenModal()} }>
-                            <FontAwesomeIcon icon={faComments} style={{fontSize:'20px'}}/>
+                          <button className="btn btn-link" onClick={ (event:any) => { StopPropagation(event); OpenModal()}}>
+                            <FontAwesomeIcon icon={faComments} style={{fontSize:'25px'}}/>
                             <span>{ReplyCount}</span>
                           </button>
                           <button className="btn btn-link" onClick={(event:any) => { StopPropagation(event); handleReTweet()}}>
-                            <FontAwesomeIcon icon={faRetweet} style={{color:'green',fontSize:'20px'}} /> 
+                            <FontAwesomeIcon icon={faRetweet} style={{color:'green',fontSize:'25px'}} /> 
                             <span>{ReTweetCount}</span>
 
                           </button>
+                            <div className=' invisible'>
+                              dummy
+                            </div>
                         </div>              
                     
                     
@@ -252,6 +223,11 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
             </div>
            
         </div>
+        <style>
+              {`.btn-link:hover{
+                 background-color:#1dcaff
+              }`}
+        </style>
 
     </div>
   )

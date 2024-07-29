@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import login from './Component/login';
 import Register from './Component/register';
-import Home from './Component/Home';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -32,7 +31,7 @@ root.render(
 
                 </Routes>
                 </BrowserRouter>   
-    <ToastContainer position='top-left'></ToastContainer>
+    <ToastContainer position='top-right'></ToastContainer>
     {/* <App/> */}
   </div>
   </React.StrictMode>
