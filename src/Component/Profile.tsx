@@ -1,4 +1,4 @@
-import React, { ChangeEvent, memo, useEffect, useMemo, useRef, useState } from 'react'
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import './profile.css'
 import { useParams } from 'react-router-dom'
 import axios, { AxiosResponse } from 'axios'
@@ -6,6 +6,7 @@ import Cookies from 'js-cookie'
 import { toast } from 'react-toastify'
 import TweetList from './Home_Component/TweetList'
 import EditProfile from './Profile_component/EditProfile'
+import UploadProfileImg from './Profile_component/UploadProfileImg'
 
 function Profile() {
 
@@ -17,39 +18,47 @@ function Profile() {
     const [LoggedUserOrNot, setLoggedUserOrNot] = useState(false)
     const [UserTweetsAndReplies, setUserTweetsAndReplies] = useState<any>()
     const [EditProfileModal, setEditProfileModal] = useState<boolean>(false)
-    
+    const [UploadProfileImgModal, setUploadProfileImgModal] = useState<boolean|undefined>(undefined)
+    const [ProfileImage, setProfileImage] = useState<string|undefined>(undefined)
+
+
     useEffect(() => {
       
         const fetch = async () => {          
           const resp: AxiosResponse= await axios.get(`http://localhost:5000/API/user/${userId}`,{headers:{Authorization:`Bearer ${token}`}})
-            setUserData(await resp.data.user) 
+            setUserData(await resp.data.user)
                              
          }
          if(userId!==undefined){
           fetch(); 
          }  
     }, [userId,token])
+     
+     const fetch =useCallback(
+       async () => {
+        console.log('fetchdata is called');
+        if(UserData){
+          const resp: AxiosResponse= await axios.post(`http://localhost:5000/API/user/${UserData?._id}/tweets`,{},{headers:{Authorization:`Bearer ${token}`}})
+        console.log(resp,'responsce data');
+        setUserTweetsAndReplies(await resp.data.UserTweets)
+        }
+        
+       },
+       [UserData, token],
+     )
+     
     useEffect(() => {
-      const fetch = async () => {          
-        const resp: AxiosResponse= await axios.post(`http://localhost:5000/API/user/${UserData._id}/tweets`,{},{headers:{Authorization:`Bearer ${token}`}})
-          
-          setUserTweetsAndReplies(await resp.data.UserTweets)                   
-       }
+      
        if(UserData!==undefined){
         fetch(); 
        }  
     
       
-    }, [UserData, token])
+    }, [UserData, fetch, token])
     
-    const fileInputRef = useRef<HTMLInputElement>(null)
    
-    const handleUpload = async () => {
-      fileInputRef.current?.click()
-      
-      };
     
-    const [ProfileImage, setProfileImage] = useState<string|undefined>(undefined)
+  
     const [FollowOrUnFollow, setFollowOrUnFollow] = useState<boolean>(false);
    
     
@@ -69,34 +78,7 @@ function Profile() {
          }           
     }, [ UserData, id])   
 
-    async function handleImageChange(event: ChangeEvent<HTMLInputElement>): Promise<void> {
-        const file = event.target.files?.[0];
-      
-         if (file && userId) {
-      
-         const reader = new FileReader();
-                        reader.onloadend = () => {
-                          setProfileImage(reader.result as string);
-                      };
-                        reader.readAsDataURL(file);
-          const fileArrayBuffer = await file.arrayBuffer(); // Convert file to ArrayBuffer
-          // const buffer=Buffer.from(fileArrayBuffer)
-    
-          try {
-            console.log(userId,'userid');
-            const response = await axios.post(`http://localhost:5000/API/user/${userId}/uploadProfilePic`, fileArrayBuffer, {
-              headers: {
-                Authorization:`Bearer ${token}`,
-                'Content-Type': 'image/jpeg',
-              },
-            });
-                  
-            console.log('File uploaded successfully:', response);
-          } catch (error) {
-            console.error('Error uploading file:', error);
-          }      
-    }
-    }
+  
     const follow = async () => { 
       const response = await axios.post(`http://localhost:5000/API/user/${userId}/follow`, {}, {
         headers: {
@@ -124,13 +106,20 @@ function Profile() {
      }
     
     
-    const  UserTweetsAndRepliesMemo=useMemo(() => <TweetList key={Date.now()} AllTweet={UserTweetsAndReplies}></TweetList>, [UserTweetsAndReplies])
+    const  UserTweetsAndRepliesMemo=useMemo(() => 
+    <TweetList key={Date.now()} AllTweet={UserTweetsAndReplies}></TweetList>
+    , [UserTweetsAndReplies,])
   return (
     <div>
        <div className="profile-page">
        {/* {EditProfileModal && <EditProfile  EditModal1={EditModal()}></EditProfile>} */}
-       {EditProfileModal&&<EditProfile closeModal={() => { setEditProfileModal(false) } }  ></EditProfile>}
-       
+       {EditProfileModal&&<EditProfile closeModal={() => {  setEditProfileModal(false) } }  ></EditProfile>}
+       {UploadProfileImgModal && <UploadProfileImg closeModal={(profile) => { setUploadProfileImgModal(false);if(profile){ setProfileImage(profile)
+        const EditedTweet= UserTweetsAndReplies.map((item:any) => { return {...item,tweetedBy:{...item.tweetedBy,profle_picture:{...item.tweetedBy.profle_picture,filename:profile}}} }) 
+        console.log(EditedTweet,'userTweet and replies');
+        setUserTweetsAndReplies(EditedTweet)
+         console.log(UserTweetsAndReplies,'userTweet and replies');
+         } }} userId={userId}></UploadProfileImg>}
       <div className="profile-header">
         <div style={{zIndex:5}} className="profile-image-container">
           <img
@@ -144,20 +133,11 @@ function Profile() {
             <div className="profile-actions top-right">
 
               {
-              LoggedUserOrNot?(<div>
-                                <input ref={fileInputRef}
-                                        type="file"
-                                        accept="image/*"
-                                        id="upload-photo"
-                                        style={{ display: 'none' }}
-                                        onChange={handleImageChange}
-                                    />
-                                <button   onClick={handleUpload}className="btn btn-outline-primary">Upload Profile Photo</button>
-                                <button onClick={() => { setEditProfileModal(true) }} className="btn btn-outline-dark">Edit </button>
-                                
+              LoggedUserOrNot?(<div>                               
+                                <button   onClick={() => { setUploadProfileImgModal(true) }} className="btn btn-outline-primary">Upload Profile Photo</button>
+                                <button onClick={() => { setEditProfileModal(true) }} className="btn btn-outline-dark">Edit </button>                                
                             </div>):
-                            (<div>
-                              
+                            (<div>                              
                             {FollowOrUnFollow ?(<button onClick={Unfollow} style={{margin:'10px'}} className="btn btn-dark">UnFollow</button>):
                             (<button onClick={follow} className="btn btn-dark">Follow</button>)}
                             
