@@ -33,6 +33,7 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
       reader.readAsDataURL(selectedFile)
     }
   }
+  // element is triggered when the textarea loses focus
     const handleBlur = (e:React.FocusEvent<HTMLTextAreaElement>) => {
       setContent(e.target.value);
   }
@@ -60,9 +61,6 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
            toast.success(resp.data.message)
            closeModal(await resp.data.Tweet);
           } 
-        
-          
-       
       } catch (error) {
         console.log(error,'error');
          if(axios.isAxiosError(error)){
@@ -98,6 +96,7 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
       <button className="btn btn-link"onClick={HandleIconClick}>
                 <FontAwesomeIcon style={{fontSize:'40px'}}  icon={faImage } flip='both' />
      </button>
+     {/* selected image preview shown here */}
      {PreviewUrl && (
         <div>
           <img src={PreviewUrl} alt="Selected file" style={{ maxWidth: '100%', height: 'auto' }} />
