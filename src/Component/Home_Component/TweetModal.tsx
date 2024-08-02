@@ -12,45 +12,37 @@ interface Modal_props{
 }
 
 const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
-  console.log(show,'tweetModal');
   const [file, setFile] = useState<File|null>(null);
   const [PreviewUrl, setPreviewUrl] = useState<string>('')
   const [Content, setContent] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement|null>(null);
-  const token=Cookies.get('token')
-  
-   
+  const token=Cookies.get('token')  
  
   const HandleIconClick = () => { if (fileInputRef.current) {
     fileInputRef.current.click()
   } }
-  
-    const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-      if(e.target.files){
-        const selectedFile=e.target.files[0]
-        setFile(selectedFile)
-        const reader=new FileReader();
-        reader.onloadend=()=>{
-          setPreviewUrl(reader.result as string)
-        }
-        reader.readAsDataURL(selectedFile)
+  // get first image file  and read  it 
+  const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    if(e.target.files){
+      const selectedFile=e.target.files[0]
+      setFile(selectedFile)
+      const reader=new FileReader();
+      reader.onloadend=()=>{
+        setPreviewUrl(reader.result as string)
       }
+      reader.readAsDataURL(selectedFile)
     }
-
+  }
     const handleBlur = (e:React.FocusEvent<HTMLTextAreaElement>) => {
       setContent(e.target.value);
-
-    }
+  }
     
-    const handleUpload = async () => {
-      // if(!file){return }
-      const formdata=new FormData();
-      formdata.append('content',Content)
+  const handleUpload = async () => {
+    const formdata=new FormData();
+    formdata.append('content',Content)
       if(file){
         formdata.append('image',file)
-      }
-      
-     
+      }    
       try {
         
         formdata.forEach((value, key) => {
@@ -82,7 +74,8 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
     const tab=-1;
     
   return (
-     
+    // Clicking on the tweet button will open this dialog
+
     <div>
       <div className={`modal ${show?'d-block':'d-none'}`} tabIndex={tab} role="dialog">
   <div className="modal-dialog" role="document">
