@@ -1,0 +1,13 @@
+.nav-item{
+    font-size: larger;
+    font-weight: bold;
+    padding: 1%
+
+}
+
+.navbar .container-fluid, 
+.navbar-expand-lg .navbar-collapse, 
+.navbar-expand-lg .navbar-nav{
+  flex-direction: column;
+  align-items: flex-start;
+}

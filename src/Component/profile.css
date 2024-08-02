@@ -1,0 +1,125 @@
+.profile-page {
+    font-family: Arial, sans-serif;
+  }
+  
+  .profile-header {
+    background-color: #1da1f2; /* Blue header background */
+    color: white;
+    padding: 80px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .profile-image-container {
+    position: absolute;
+    bottom: -75px;
+    left: 20px;
+  }
+  
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid white;
+  }
+  
+  .profile-body {
+    background-color: white;
+    padding: 15px;
+    padding-top: 75px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position:relative;
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .profile-name {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .profile-username {
+    color: gray;
+    font-size: 18px;
+  }
+  
+  .profile-details {
+    margin-top: 20px;
+  }
+  
+  .detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .detail-icon {
+    margin-right: 10px;
+  }
+  
+  .profile-stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  
+  .stats-item {
+    text-align: center;
+  }
+  
+  .stats-number {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .stats-label {
+    color: gray;
+  }
+  .top-right {
+    position: absolute;
+    top: 20px; 
+    right: 20px; 
+  }
+  .profile-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .upload-btn, .edit-btn {
+    background-color: #1da1f2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .upload-btn:hover, .edit-btn:hover {
+    background-color: #1a91da;
+  }
+  
+  .tweet-section {
+    margin-top: 20px;
+  }
+  
+  .tweet-container {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .tweet {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+  }
+  
+  .tweet:last-child {
+    border-bottom: none;
+  }

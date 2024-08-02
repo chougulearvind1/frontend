@@ -1,0 +1,167 @@
+
+  //  useEffect(() => {
+  //     const fetchdat = async () => {
+  //       try {
+  //         const tweetid='665a73077319fea6b0bb303e';
+  //         const token=Cookies.get('token')
+  //         const  resp= await axios.get(`http://localhost:5000/API/tweet/${tweetid}`,{headers:{Authorization:`Bearer ${token}`}})
+  //           setTweet(resp.data.message)
+  //           console.log(resp.data.message,'resp');
+            
+  //       } catch (error) {
+  //         console.log(error,'error');
+  //       }
+  //     }
+  //     fetchdat();
+  //    // eslint-disable-next-line
+  //  },[]) 
+
+
+
+   {Tweet.replies.map((reply:any)=>(
+                  <div> 
+                    {JSON.stringify(reply)}
+                    <Tweets tweet_data={reply} userId={userId}></Tweets>
+                  </div>
+                ))}
+
+
+
+
+
+map((reply:any)=>(
+                  <Tweets tweet_data={reply} userId={userId}></Tweets>
+                  ))
+
+
+
+                {
+                   if(typeof item==='object') {
+                      return Tweet.replies.map((reply:any)=>(                    
+                      <div>                     
+                        <Tweets tweet_data={reply} userId={userId}></Tweets>
+                      </div>
+                   ))
+                   }
+
+                   if(typeof item==='string') {
+                     populate(Tweet.replies)                 }
+                     }
+
+
+                const nestedreply = (reply: { replies: any[]; }) => {
+    return (
+      <div>
+        {JSON.stringify(reply)}
+        {
+          reply.replies.map((rp) => {
+           
+          <Tweets tweet_data={rp} userId={userId}></Tweets>
+          return nestedreply(rp);
+          }).join('')
+        }
+      </div>
+    )
+    
+  }
+
+
+
+      {Tweet.replies && Tweet.replies.length>0 && (
+          <div>
+                  {Tweet.replies.map((reply:any)=>(
+                  <div> 
+                    
+                    <Tweets tweet_data={reply} userId={userId}></Tweets>
+                  </div>
+                ))}
+
+          </div>
+       )}
+
+
+        {populate(Tweet.replies)}
+
+        {Tweet.replies && Tweet.replies.length>0 && (
+          <div>
+            {Tweet.replies.every((item:any)=>typeof item==='string') && populateTweet.current}
+            {Tweet.replies.every((item:any)=>typeof item==='object') &&  Tweet.replies.map((reply:any)=>(<Tweets key={reply._id} tweet_data={reply} userId={userId}></Tweets>))}                
+
+          </div>
+       )}
+         {Tweet.replies && Tweet?.replies.map((reply:any)=>(
+                  <div> 
+                    {JSON.stringify(reply)}
+                  </div>
+                ))}
+
+
+
+                if(Tweet.replies){
+        //   if(Tweet.replies.every((item:any)=>typeof item==='string')){
+        //   Tweet.replies.map((reply: any)=>(setTweet(populate(reply))))
+          
+        // }
+
+
+
+         let Retwitter:any;
+            if(Tweet.retweetBy.every((item:any)=>typeof item==='object')){
+              Tweet.retweetBy.forEach((item: any) => {
+                   console.log(item,'items');
+                
+                Retwitter=Tweet;
+                Retwitter.ReTweetUser=item.UserName;                
+                 return Retwitter;
+                
+              });
+              OnRetweet(Retwitter)
+              console.log(Retwitter);
+              
+              
+                            
+            }
+
+
+            http://localhost:5000/API/user/66573b51a455feb4f36b28f4/uploadProfilePic
+
+
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card-group mb-0">
+          <div class="card p-4">
+            <div class="card-body">
+              <h1>Login</h1>
+              <p class="text-muted">Sign In to your account</p>
+              <div class="input-group mb-3">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" placeholder="Username">
+              </div>
+              <div class="input-group mb-4">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" placeholder="Password">
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <button type="button" class="btn btn-primary px-4">Login</button>
+                </div>
+                <div class="col-6 text-right">
+                  <button type="button" class="btn btn-link px-0">Forgot password?</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+            <div class="card-body text-center">
+              <div>
+                <h2>Sign up</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <button type="button" class="btn btn-primary active mt-3">Register Now!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
