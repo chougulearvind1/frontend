@@ -66,9 +66,10 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
          if (await resp.status===200) {        
             console.log(resp.data,'tweetmodal data');
            toast.success(resp.data.message)
+           closeModal(await resp.data.Tweet);
           } 
         
-          closeModal(await resp.data.Tweet);
+          
        
       } catch (error) {
         console.log(error,'error');
@@ -88,7 +89,7 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
     <div className="modal-content">
       <div className="modal-header ">
         <h5 className="modal-title justify-content-between">New Tweet</h5>
-        <button type="button" className="close" onClick={closeModal} aria-label="Close">
+        <button type="button" className="close" onClick={() => { closeModal('')}} aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -113,7 +114,7 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-primary" onClick={handleUpload}>Tweet</button>
-        <button type="button" className="btn btn-secondary" data-dismiss="modal"onClick={closeModal}>Close</button>
+        <button type="button" className="btn btn-secondary" data-dismiss="modal"onClick={() => { closeModal('') }}>Close</button>
       </div>
     </div>
   </div>

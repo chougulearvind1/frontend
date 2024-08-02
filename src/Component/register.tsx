@@ -1,4 +1,4 @@
-
+ 
 import React, { useState } from 'react';
 import img from '../PAFF_121515_linguisticcuessocialidentity_newsfeature.jpg'
 import axios, { AxiosRequestConfig } from 'axios';
@@ -55,6 +55,7 @@ function Register() {
          password: '',
          confirm_password:''
      };
+    //  validate data  at client side and set all error in erros object
      if(!Form_Data.Name) errors.Name=' Name is required ';
      if(!Form_Data.UserName)errors.UserName='user Name is required';
      if(!Form_Data.Email)errors.Email='Email Address is required'

@@ -1,20 +1,26 @@
 
-import {memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import {CSSProperties, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import TweetList from './Home_Component/TweetList'
 import axios, { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
 import TweetModal from './Home_Component/TweetModal'
+import { toast } from 'react-toastify'
+import { stringify } from 'querystring'
 
 
 const Home=()=>  {  
   const [AllTweet, setAllTweet] = useState<any[]>([])
-  const [ShowModal, setShowModal] = useState(false);   
+  const [ShowModal, setShowModal] = useState(false);  
+  const [LoggedOrNot, setLoggedOrNot] = useState<CSSProperties>() 
   const UserName=Cookies.get('UserName')
 
-  const parentRef = useRef<HTMLDivElement>(null);
+  
   const childRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if(!UserName){
+      setLoggedOrNot({pointerEvents:'none'})
+    }
     const fetchdata = async () => {
      const resp:AxiosResponse= await axios.get('http://localhost:5000/API/tweet/')
      if(!resp){throw new Error('network response was not ok')}
@@ -63,8 +69,11 @@ const Home=()=>  {
   },[])
   
   const closeModal = 
-    (Tweet:any) => {
-      setAllTweet((prevTweet) => [Tweet,...prevTweet] );
+    (Tweet:any) => {      
+      if(typeof Tweet !== 'string'){
+         setAllTweet((prevTweet) => [Tweet,...prevTweet] );
+      }
+           
        setShowModal(false)
     }
      const OpenModal = () => {
@@ -80,9 +89,9 @@ const Home=()=>  {
     //  AllTWeet is not run at every State Change so memo is used
     const AllTweetMemo= useMemo(() => <TweetList  key={Date.now()} AllTweet={AllTweet} updatedTweets={updatefunction} ></TweetList> , [AllTweet, updatefunction]) 
     return (
-      <div ref={childRef}  className='card p-4'style={{backgroundColor:'#ffffff'}}>
-
-          {ShowModal && <TweetModal show={ShowModal} closeModal={closeModal} > </TweetModal> }
+      <div ref={childRef} className='card p-4'style={{backgroundColor:'#ffffff',display:'pointer'}} onClick={( ) => { if(LoggedOrNot)toast.error('please login first ') }}>
+          <div  style={LoggedOrNot} >
+            {ShowModal && <TweetModal show={ShowModal} closeModal={closeModal} > </TweetModal> }
           <div style={{position:'sticky',zIndex:'10',top:'0'}}>
             <div  className=" d-flex  mb-3"style={{flexDirection:'row',justifyContent:'space-between', backgroundColor:'#ffffff'}}>
                 <h3>Home</h3>
@@ -94,6 +103,8 @@ const Home=()=>  {
         <div >
           { AllTweetMemo }
         </div>
+          </div>
+        
                 
       </div>
     )

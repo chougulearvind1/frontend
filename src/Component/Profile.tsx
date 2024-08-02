@@ -21,7 +21,6 @@ function Profile() {
     const [UploadProfileImgModal, setUploadProfileImgModal] = useState<boolean|undefined>(undefined)
     const [ProfileImage, setProfileImage] = useState<string|undefined>(undefined)
 
-
     useEffect(() => {
       
         const fetch = async () => {          
@@ -39,12 +38,12 @@ function Profile() {
         console.log('fetchdata is called');
         if(UserData){
           const resp: AxiosResponse= await axios.post(`http://localhost:5000/API/user/${UserData?._id}/tweets`,{},{headers:{Authorization:`Bearer ${token}`}})
-        console.log(resp,'responsce data');
+       
         setUserTweetsAndReplies(await resp.data.UserTweets)
         }
         
        },
-       [UserData, token],
+       [UserData, token]
      )
      
     useEffect(() => {
@@ -107,19 +106,17 @@ function Profile() {
     
     
     const  UserTweetsAndRepliesMemo=useMemo(() => 
+     
     <TweetList key={Date.now()} AllTweet={UserTweetsAndReplies}></TweetList>
-    , [UserTweetsAndReplies,])
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    , [UserTweetsAndReplies])
   return (
     <div>
        <div className="profile-page">
        {/* {EditProfileModal && <EditProfile  EditModal1={EditModal()}></EditProfile>} */}
        {EditProfileModal&&<EditProfile closeModal={() => {  setEditProfileModal(false) } }  ></EditProfile>}
-       {UploadProfileImgModal && <UploadProfileImg closeModal={(profile) => { setUploadProfileImgModal(false);if(profile){ setProfileImage(profile)
-        const EditedTweet= UserTweetsAndReplies.map((item:any) => { return {...item,tweetedBy:{...item.tweetedBy,profle_picture:{...item.tweetedBy.profle_picture,filename:profile}}} }) 
-        console.log(EditedTweet,'userTweet and replies');
-        setUserTweetsAndReplies(EditedTweet)
-         console.log(UserTweetsAndReplies,'userTweet and replies');
-         } }} userId={userId}></UploadProfileImg>}
+       {UploadProfileImgModal && <UploadProfileImg closeModal={(profile) => { setUploadProfileImgModal(false);if(profile){ setProfileImage(profile); } }} userId={userId}></UploadProfileImg>}
       <div className="profile-header">
         <div style={{zIndex:5}} className="profile-image-container">
           <img
@@ -184,6 +181,13 @@ function Profile() {
         
       </div>
         </div>
+        
+        <style>
+          {`.card>.d-flex>.col-auto>img{
+            content:url(${ProfileImage});            
+          
+          }`}
+        </style>
     </div>
   )
 }

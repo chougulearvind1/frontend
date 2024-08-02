@@ -43,6 +43,7 @@ function Login() {
       
       try {
         const resp=await axios.post('http://localhost:5000/API/auth/login',Form_Data,config)
+        // if request is sucessfull set the cookies
       if(await resp.data.success){
         Cookies.set('token',resp.data.token ,{expires:1})
         Cookies.set('Name',resp.data.Name ,{expires:1})
@@ -97,7 +98,7 @@ function Login() {
         <div className="card text-white  py-5 " style={{backgroundColor:'#00affe'}}>
           <div className="card-body text-center">
                 <h2 >Welcome Back</h2>
-                <img className="img-fluid" style={{maxWidth:'50%'}} src={img} alt="" />
+                <img className="img-fluid" style={{maxWidth:'50%', height:'50%'}} src={img} alt="" />
           </div>   
         </div>
         <div className="card">
