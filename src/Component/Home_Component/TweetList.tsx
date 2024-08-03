@@ -10,7 +10,7 @@ interface TweetListProps{
   updatedTweets?:(updateTweets: any) => void;
 }
 const TweetList:React.FC<TweetListProps> = ({AllTweet,updatedTweets}) => { 
-  const [AllTweets, setAllTweets] = useState<any[]>(AllTweet)  
+  const [AllTweets] = useState<any[]>(AllTweet)  
   
         
       //  const [UpdatedReTweets, setUpdatedReTweets] = useState<any[]>()

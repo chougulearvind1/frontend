@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import  { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import './profile.css'
 import { useParams } from 'react-router-dom'
 import axios, { AxiosResponse } from 'axios'

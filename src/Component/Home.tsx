@@ -5,7 +5,6 @@ import axios, { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
 import TweetModal from './Home_Component/TweetModal'
 import { toast } from 'react-toastify'
-import { stringify } from 'querystring'
 
 
 const Home=()=>  {  
