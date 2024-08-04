@@ -42,7 +42,7 @@ function Login() {
       }
       
       try {
-        const resp=await axios.post('http://localhost:5000/API/auth/login',Form_Data,config)
+        const resp=await axios.post('https://backend-3j4k.onrender.com/API/auth/login',Form_Data,config)
         // if request is sucessfull set the cookies
       if(await resp.data.success){
         Cookies.set('token',resp.data.token ,{expires:1})
