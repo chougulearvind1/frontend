@@ -65,7 +65,7 @@ function Profile() {
     useEffect(() => {
 
       if(UserData!==undefined) {
-         setProfileImage(`http://localhost:5000/profile_img/${UserData?.profle_picture.filename}`)
+         setProfileImage(`https://backend-3j4k.onrender.com/profile_img/${UserData?.profle_picture.filename}`)
          if(id===UserData._id){
               setLoggedUserOrNot(true)
               
@@ -79,7 +79,7 @@ function Profile() {
 
   
     const follow = async () => { 
-      const response = await axios.post(`http://localhost:5000/API/user/${userId}/follow`, {}, {
+      const response = await axios.post(`https://backend-3j4k.onrender.com/API/user/${userId}/follow`, {}, {
         headers: {
           Authorization:`Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ function Profile() {
      }   
 
      const Unfollow = async () => { 
-      const response = await axios.post(`http://localhost:5000/API/user/${userId}/unfollow`, {}, {
+      const response = await axios.post(`https://backend-3j4k.onrender.com/API/user/${userId}/unfollow`, {}, {
         headers: {
           Authorization:`Bearer ${token}`,
           'Content-Type': 'application/json',
