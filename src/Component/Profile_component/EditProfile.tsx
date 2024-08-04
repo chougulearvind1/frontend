@@ -22,7 +22,7 @@ const EditProfile:React.FC<EditProfileModal>=({closeModal})=> {
     const handleUpload = async () => {
         try {
           const fromData={Name,location,DateOfBirth}
-      const resp=await axios.put(`http://localhost:5000/API/user/${userId}/`,fromData,{headers:{Authorization:`Bearer ${token}`}})
+      const resp=await axios.put(`https://backend-3j4k.onrender.com/API/user/${userId}/`,fromData,{headers:{Authorization:`Bearer ${token}`}})
       console.log(resp.data);
       toast.success(resp.data.message)
       closeModal()

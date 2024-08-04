@@ -41,7 +41,7 @@ const ReplyModal:React.FC<Modal_props>= ({show,closeModal,id}) => {
             }
           }
           console.log('abcd');
-        const resp= await axios.post(`http://localhost:5000/API/tweet/${id}/reply/`,formdata,config)
+        const resp= await axios.post(`https://backend-3j4k.onrender.com/API/tweet/${id}/reply/`,formdata,config)
         
         console.log(resp.data.ReplyCount,'reply count');
            toast.success(resp.data.message)

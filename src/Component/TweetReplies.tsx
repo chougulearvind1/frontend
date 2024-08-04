@@ -25,7 +25,7 @@ function TweetReplies() {
               console.log(TweetDetails,'Tweet Details');
               const  AllTweetReplies= TweetDetails.map(async (ReplyTweet: any) => { 
                 console.log(ReplyTweet,'reply tweet');
-                 const resp= await axios.get(`http://localhost:5000/API/tweet/${ReplyTweet?._id}`,config)
+                 const resp= await axios.get(`https://backend-3j4k.onrender.com/API/tweet/${ReplyTweet?._id}`,config)
                return resp.data.message;
              })
              setReplyObject( await Promise.all( AllTweetReplies))            

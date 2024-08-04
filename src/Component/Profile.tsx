@@ -24,7 +24,7 @@ function Profile() {
     useEffect(() => {
       
         const fetch = async () => {          
-          const resp: AxiosResponse= await axios.get(`http://localhost:5000/API/user/${userId}`,{headers:{Authorization:`Bearer ${token}`}})
+          const resp: AxiosResponse= await axios.get(`https://backend-3j4k.onrender.com/API/user/${userId}`,{headers:{Authorization:`Bearer ${token}`}})
             setUserData(await resp.data.user)
                              
          }
@@ -37,7 +37,7 @@ function Profile() {
        async () => {
         console.log('fetchdata is called');
         if(UserData){
-          const resp: AxiosResponse= await axios.post(`http://localhost:5000/API/user/${UserData?._id}/tweets`,{},{headers:{Authorization:`Bearer ${token}`}})
+          const resp: AxiosResponse= await axios.post(`https://backend-3j4k.onrender.com/API/user/${UserData?._id}/tweets`,{},{headers:{Authorization:`Bearer ${token}`}})
        
         setUserTweetsAndReplies(await resp.data.UserTweets)
         }
