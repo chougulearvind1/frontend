@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import img from '../PAFF_121515_linguisticcuessocialidentity_newsfeature.jpg'
 import axios, {  AxiosRequestConfig } from 'axios'
 import Cookies from 'js-cookie'

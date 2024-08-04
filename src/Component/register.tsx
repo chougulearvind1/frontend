@@ -67,7 +67,7 @@ function Register() {
                 "Content-Type":"application/json"
             }
         }
-        const resp=await axios.post<registeration>('http://localhost:5000/API/auth/register',Form_Data,config);
+        const resp=await axios.post<registeration>('https://backend-3j4k.onrender.com/API/auth/register',Form_Data,config);
          
         if((await resp).data.success){
         

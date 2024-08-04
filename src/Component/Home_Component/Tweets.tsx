@@ -42,7 +42,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
     
       const handleReTweet = async () => {
         try {
-          const resp=await axios.post(`http://localhost:5000/API/tweet/${Tweet?._id}/retweet`,{},{headers:{Authorization:`Bearer ${token}`}})
+          const resp=await axios.post(`https://backend-3j4k.onrender.com/API/tweet/${Tweet?._id}/retweet`,{},{headers:{Authorization:`Bearer ${token}`}})
           setReTweet(resp.data)
           setReTweetCount(resp.data.count)
           toast.success(resp.data.message)
@@ -54,7 +54,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
         
       const handleLike = async () => {
         try {
-          const resp=await axios.post(`http://localhost:5000/API/tweet/${Tweet?._id}/like`,{},{headers:{Authorization:`Bearer ${token}`}})
+          const resp=await axios.post(`https://backend-3j4k.onrender.com/API/tweet/${Tweet?._id}/like`,{},{headers:{Authorization:`Bearer ${token}`}})
           toast.success(resp.data.message)
           setIsLiked( resp.data.IsLike);
           setLikeCount(resp.data.LikeCount)
@@ -66,7 +66,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
         }      }
       const handleDisLike = async () => {
         try {
-          const resp=await axios.post(`http://localhost:5000/API/tweet/${Tweet?._id}/dislike`,{},{headers:{Authorization:`Bearer ${token}`}})
+          const resp=await axios.post(`https://backend-3j4k.onrender.com/API/tweet/${Tweet?._id}/dislike`,{},{headers:{Authorization:`Bearer ${token}`}})
           toast.success(resp.data.message)
           setIsLiked( resp.data.IsLike);
           setLikeCount(resp.data.LikeCount)
@@ -108,7 +108,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
             async function DeleteTweetFuncion() {
               try {
                 
-                const resp=await axios.delete(`http://localhost:5000/API/tweet/${Tweet._id}`,{headers:{Authorization:`Bearer ${token}`}})
+                const resp=await axios.delete(`https://backend-3j4k.onrender.com/API/tweet/${Tweet._id}`,{headers:{Authorization:`Bearer ${token}`}})
                 
                 toast.success(resp.data.message)
                 if(resp.status===200){
@@ -154,7 +154,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
                </div> )}
             <div className="d-flex" style={{flexDirection:'row'}}>
                           <div style={{}} className='col-auto'>
-                            <img style={{width:'70px',height:'70px',margin:'5px'}} src={`http://localhost:5000/profile_img/${Tweet?.tweetedBy?.profle_picture?.filename}`} alt="" className="rounded-circle mr3" />
+                            <img style={{width:'70px',height:'70px',margin:'5px'}} src={`https://backend-3j4k.onrender.com/profile_img/${Tweet?.tweetedBy?.profle_picture?.filename}`} alt="" className="rounded-circle mr3" />
                         </div>
                         <div className='col p-1 pt-2'>
                         
@@ -165,7 +165,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
                         </div>
                         <div className="card-body" style={{paddingBottom:'0'}}>
                           <p style={{fontSize:'larger'}} className="">{Tweet?.content}</p> 
-                          {Tweet?.image &&  (<img src={`http://localhost:5000/${Tweet?.image}`} className="card-img-top" alt="Card"></img>)}
+                          {Tweet?.image &&  (<img src={`https://backend-3j4k.onrender.com/${Tweet?.image}`} className="card-img-top" alt="Card"></img>)}
                          
                                 
 
