@@ -24,7 +24,7 @@ function App() {
            <div className="col-1 col-md-1 col-lg-1 d-none d-md-block">
 
            </div>
-           <div className=" col-sm-3 flex-sm-column col-md-2  ">
+           <div className=" col-sm-3 flex-sm-column col-md-2 sticky-top "style={{top:'-10px',background:'#ffffff',zIndex:'9'}}>
            <SideBar></SideBar>
            </div>
            <div className="col-12  col-sm-9  col-md-6" >

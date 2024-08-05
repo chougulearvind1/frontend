@@ -23,17 +23,17 @@ function SideBar() {
 
   return (
     // - Sidebar will contain all the navigation links, app logo and logged in user name
-   <div className=" d-flex align-content-between flex-wrap align-item-center sm-ht"style={{overflow:'hidden',position:'sticky',top:'0' }}>    
+   <div className=" d-flex sticky-top  align-content-between flex-wrap align-item-center sm-ht">    
      <nav className="navbar navbar-expand-sm flex-nowrap">
       
       
-            <img className="w-25 d-sm-none" src={img} alt="img" />      
+            {/* <img className="w-25 d-sm-none" src={img} alt="img" />       */}
           
       
       <div className="">  
       {/* - Clicking on the nav links will get to appropriate page      */}
         <ul className="navbar-nav flex-row  flex-sm-column align-item-center ">       
-        <li className=""><a href="/" className="img-fluid d-none d-sm-block" style={{display:'flex',justifyContent:'center'}}>
+        <li className=""><a href="/" className="img-fluid " style={{display:'flex',justifyContent:'center'}}>
             <img className="ratio ratio-1x1" src={img} alt="img" />      
           </a></li>
           <li className="nav-item">
@@ -130,6 +130,7 @@ the login page again. */}
           }
           .sm-ht{
           height:95vh
+          position:static;
           }
           .nav-item>a{
           

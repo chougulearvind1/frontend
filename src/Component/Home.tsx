@@ -88,10 +88,11 @@ const Home=()=>  {
     //  AllTWeet is not run at every State Change so memo is used
     const AllTweetMemo= useMemo(() => <TweetList  key={Date.now()} AllTweet={AllTweet} updatedTweets={updatefunction} ></TweetList> , [AllTweet, updatefunction]) 
     return (
-      <div ref={childRef} className='card p-0 p-sm-4'style={{backgroundColor:'#ffffff',display:'pointer'}} onClick={( ) => { if(LoggedOrNot)toast.error('please login first ') }}>
+      <div ref={childRef} className='card p-0 p-sm-4'style={{backgroundColor:'#ffffff',display:'pointer'}}
+       onClick={( ) => { if(LoggedOrNot){toast.error('"Please log in to continue');toast.info("New user? Click on Register button !")} }}>
           <div  style={LoggedOrNot} >
             {ShowModal && <TweetModal show={ShowModal} closeModal={closeModal} > </TweetModal> }
-          <div style={{position:'sticky',zIndex:'10',top:'0'}}>
+          <div style={{position:'sticky',zIndex:'10',top:'70px'}}>
             <div  className=" d-flex  mb-3"style={{flexDirection:'row',justifyContent:'space-between', backgroundColor:'#ffffff'}}>
                 <h3>Home</h3>
                 <button className="btn " style={{backgroundColor:'#1ba1ef'}} onClick={OpenModal} data-toggle="modal" data-target="#exampleModal">Tweet</button>
