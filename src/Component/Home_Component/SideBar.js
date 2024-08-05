@@ -105,7 +105,7 @@ the login page again. */}
           }
            .divsticky {
            position:sticky;
-           zIndex:10;
+           z-Index:10;
            top:75px
            }
           button>span{
