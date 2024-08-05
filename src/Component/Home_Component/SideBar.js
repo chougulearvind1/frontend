@@ -105,7 +105,7 @@ the login page again. */}
           }
            .divsticky {
            position:sticky;
-           z-Index:10;
+           z-index:10;
            top:75px
            }
           button>span{
@@ -131,7 +131,7 @@ the login page again. */}
             
           }
           .sm-ht{
-          height:95vh
+          height:95vh;
           position:static;
           }
           .nav-item>a{
