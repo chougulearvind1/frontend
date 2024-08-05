@@ -103,7 +103,11 @@ the login page again. */}
           h4:hover{
           text-decoration:underline;
           }
-           .divsticky {position:'sticky',zIndex:'10',top:'75px'}
+           .divsticky {
+           position:sticky;
+           zIndex:10;
+           top:75px
+           }
           button>span{
               font-size: larger;
 
@@ -118,7 +122,7 @@ the login page again. */}
 
           /* Increase size for medium screens (md) and up */
           @media (min-width: 768px) {
-         .divsticky {position:'sticky',zIndex:'10',top:'0px'}
+         .divsticky {top:0px}
           .nav-item {
             font-size: 1rem;
             padding: 5px;
