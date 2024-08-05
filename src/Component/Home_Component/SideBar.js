@@ -74,7 +74,7 @@ the login page again. */}
             </a>
             </li>
             <li className="nav-item">
-              <a href="/login" className="nav-link"><FontAwesomeIcon icon={faIdCard} width={45} height={30} />
+              <a href="/register" className="nav-link"><FontAwesomeIcon icon={faIdCard} width={45} height={30} />
                <span>Register</span>
                </a>
             </li></>
@@ -103,7 +103,7 @@ the login page again. */}
           h4:hover{
           text-decoration:underline;
           }
-
+           .divsticky {position:'sticky',zIndex:'10',top:'75px'}
           button>span{
               font-size: larger;
 
@@ -118,9 +118,7 @@ the login page again. */}
 
           /* Increase size for medium screens (md) and up */
           @media (min-width: 768px) {
-          .sm-card-width{
-           
-          }
+         .divsticky {position:'sticky',zIndex:'10',top:'0px'}
           .nav-item {
             font-size: 1rem;
             padding: 5px;

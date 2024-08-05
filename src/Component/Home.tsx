@@ -92,7 +92,7 @@ const Home=()=>  {
        onClick={( ) => { if(LoggedOrNot){toast.error('"Please log in to continue');toast.info("New user? Click on Register button !")} }}>
           <div  style={LoggedOrNot} >
             {ShowModal && <TweetModal show={ShowModal} closeModal={closeModal} > </TweetModal> }
-          <div style={{position:'sticky',zIndex:'10',top:'70px'}}>
+          <div className='divsticky'>
             <div  className=" d-flex  mb-3"style={{flexDirection:'row',justifyContent:'space-between', backgroundColor:'#ffffff'}}>
                 <h3>Home</h3>
                 <button className="btn " style={{backgroundColor:'#1ba1ef'}} onClick={OpenModal} data-toggle="modal" data-target="#exampleModal">Tweet</button>
