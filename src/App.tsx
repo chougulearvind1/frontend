@@ -24,10 +24,10 @@ function App() {
            <div className="col-1 col-md-1 col-lg-1 d-none d-md-block">
 
            </div>
-           <div className="col-3 col-sm-3 col-md-2  ">
+           <div className=" col-sm-3 flex-sm-column col-md-2  ">
            <SideBar></SideBar>
            </div>
-           <div className="col-6  col-sm-9  col-md-6" >
+           <div className="col-12  col-sm-9  col-md-6" >
            <Routes>
                   <Route path='/profile/:userId' element={<Profile/>} ></Route>
                   <Route path='/Tweets' Component={TweetReplies}></Route>

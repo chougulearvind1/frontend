@@ -88,7 +88,7 @@ const Home=()=>  {
     //  AllTWeet is not run at every State Change so memo is used
     const AllTweetMemo= useMemo(() => <TweetList  key={Date.now()} AllTweet={AllTweet} updatedTweets={updatefunction} ></TweetList> , [AllTweet, updatefunction]) 
     return (
-      <div ref={childRef} className='card p-4'style={{backgroundColor:'#ffffff',display:'pointer'}} onClick={( ) => { if(LoggedOrNot)toast.error('please login first ') }}>
+      <div ref={childRef} className='card p-0 p-sm-4'style={{backgroundColor:'#ffffff',display:'pointer'}} onClick={( ) => { if(LoggedOrNot)toast.error('please login first ') }}>
           <div  style={LoggedOrNot} >
             {ShowModal && <TweetModal show={ShowModal} closeModal={closeModal} > </TweetModal> }
           <div style={{position:'sticky',zIndex:'10',top:'0'}}>

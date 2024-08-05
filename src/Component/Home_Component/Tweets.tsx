@@ -158,7 +158,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
                         </div>
                         <div className='col p-1 pt-2'>
                         
-                          <div className="  d-flex align-item-center">               
+                          <div className="  d-flex align-item-center flex-wrap">               
                             <h4 onClick={(event:any) => { StopPropagation(event); openProfile(Tweet.tweetedBy._id)} } className="mb-0">@{Tweet?.tweetedBy?.UserName}</h4>
                             <small style={{margin:'auto 0',paddingLeft:'10px',fontSize:'large'}} className="text-muted"> - {new Date(Tweet?.createdAt).toLocaleString('en-US',{weekday: 'long',month: 'long',day: 'numeric',year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</small>
                                       

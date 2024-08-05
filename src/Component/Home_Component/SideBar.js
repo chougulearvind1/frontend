@@ -1,5 +1,5 @@
 import  "./SideBar.css";
-import img from "../../pigeon-with-love-png";
+import img from "../../pigeon-with-love.png";
 
 
 import Cookies from 'js-cookie';
@@ -23,15 +23,19 @@ function SideBar() {
 
   return (
     // - Sidebar will contain all the navigation links, app logo and logged in user name
-   <div className=" d-flex align-content-between flex-wrap align-item-center"style={{height:'95vh',overflow:'hidden',position:'sticky',top:'0' }}>    
-     <nav className="navbar navbar-expand-lg">
+   <div className=" d-flex align-content-between flex-wrap align-item-center sm-ht"style={{overflow:'hidden',position:'sticky',top:'0' }}>    
+     <nav className="navbar navbar-expand-sm flex-nowrap">
+      
+      
+            <img className="w-25 d-sm-none" src={img} alt="img" />      
+          
+      
       <div className="">  
       {/* - Clicking on the nav links will get to appropriate page      */}
-        <ul className="navbar-nav d-flex  flex-column align-item-center ">
-          <li className=""><a href="/" className="img-fluid" style={{display:'flex',justifyContent:'center'}}>
+        <ul className="navbar-nav flex-row  flex-sm-column align-item-center ">       
+        <li className=""><a href="/" className="img-fluid d-none d-sm-block" style={{display:'flex',justifyContent:'center'}}>
             <img style={{ width:"160px",height:'180px'}} src={img} alt="img" />      
           </a></li>
-         
           <li className="nav-item">
             <a href="/" className="nav-link">
               <svg xmlns="http://www.w3.org/2000/svg" width="45" height="30" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
@@ -79,7 +83,7 @@ the login page again. */}
       </div>
      </nav>
 
-     <div className='nav-item'>
+     <div className='nav-item d-none d-sm-block'>
               <div className="d-flex">
                 <div className=" d-flex align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="45" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -104,26 +108,34 @@ the login page again. */}
               font-size: larger;
 
           }
-           .nav-item>a{
-          
-            padding:0 10px;
-            border-radius:15px;
-           }
+           
             .nav-item>a:hover{
               
               background-color:	#00aced
              }
           /* Default styles for all screen sizes */
-          .nav-item {
-            font-size: 1rem;
-            padding: 5px;
-            margin-bottom:5%;
-            width:100%
-            
-          }
+          
 
           /* Increase size for medium screens (md) and up */
           @media (min-width: 768px) {
+          .sm-card-width{
+           
+          }
+          .nav-item {
+            font-size: 1rem;
+            padding: 5px;
+            width:100%
+
+            
+          }
+          .sm-ht{
+          height:95vh
+          }
+          .nav-item>a{
+          
+            padding:0 10px;
+            border-radius:15px;
+           }
             .nav-item {
               transform: scale(1);
               transform-origin: top left;
