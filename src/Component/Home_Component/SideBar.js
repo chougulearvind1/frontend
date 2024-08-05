@@ -120,7 +120,7 @@ the login page again. */}
           /* Default styles for all screen sizes */
           
 
-          /* Increase size for medium screens (md) and up */
+          /* Increase size for medium screens (md)d and up */
           @media (min-width: 768px) {
          .divsticky {top:0px}
           .nav-item {
