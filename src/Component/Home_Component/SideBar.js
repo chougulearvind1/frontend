@@ -34,7 +34,7 @@ function SideBar() {
       {/* - Clicking on the nav links will get to appropriate page      */}
         <ul className="navbar-nav flex-row  flex-sm-column align-item-center ">       
         <li className=""><a href="/" className="img-fluid d-none d-sm-block" style={{display:'flex',justifyContent:'center'}}>
-            <img style={{ width:"160px",height:'180px'}} src={img} alt="img" />      
+            <img className="ratio ratio-1x1" src={img} alt="img" />      
           </a></li>
           <li className="nav-item">
             <a href="/" className="nav-link">
