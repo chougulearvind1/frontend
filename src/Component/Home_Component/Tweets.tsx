@@ -157,7 +157,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
                </div> )}
             <div className="d-flex" style={{flexDirection:'row'}}>
                           <div style={{}} className='col-auto'>
-                            <img style={{width:'70px',height:'70px',margin:'5px'}} src={`https://backend-3j4k.onrender.com/profile_img/${Tweet?.tweetedBy?.profle_picture?.filename}`} alt="" className="rounded-circle mr3" />
+                            <img style={{width:'70px',height:'70px',margin:'5px'}} src={`${Tweet?.tweetedBy?.profle_picture?.filename}`} alt="" className="rounded-circle mr3" />
                         </div>
                         <div className='col p-1 pt-2'>
                         
@@ -168,7 +168,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
                         </div>
                         <div className="card-body" style={{paddingBottom:'0'}}>
                           <p style={{fontSize:'larger'}} className="">{Tweet?.content}</p> 
-                          {Tweet?.image &&  (<img src={`${Tweet?.image}`} className="card-img-top" alt="Card"></img>)}
+                          {Tweet?.image &&  (<img src={`https://backend-3j4k.onrender.com/${Tweet?.image}`} className="card-img-top" alt="Card"></img>)}
                          
                                 
 
