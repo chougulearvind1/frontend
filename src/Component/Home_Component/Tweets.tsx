@@ -76,7 +76,10 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
             toast.error(error.response?.data.message)
           }          
         }
-      }     
+      }   
+        // https://backend-3j4k.onrender.com/callback
+        // fc895140db70f850c6260df5162560c19ac7980e
+        // cd05a7d8c4ed800
         const navigate=useNavigate()
       const openProfile = (userId:any) => {
         navigate(`/profile/${userId}`,{ state: { userId } })
@@ -165,7 +168,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
                         </div>
                         <div className="card-body" style={{paddingBottom:'0'}}>
                           <p style={{fontSize:'larger'}} className="">{Tweet?.content}</p> 
-                          {Tweet?.image &&  (<img src={`https://backend-3j4k.onrender.com/${Tweet?.image}`} className="card-img-top" alt="Card"></img>)}
+                          {Tweet?.image &&  (<img src={`${Tweet?.image}`} className="card-img-top" alt="Card"></img>)}
                          
                                 
 

@@ -183,7 +183,7 @@ function Profile() {
         </div>
         
         <style>
-          {`.card>.d-flex>.col-auto>img{
+          {`profile-info>.tweet-section>.card>.d-flex>.col-auto>img{
             content:url(${ProfileImage});            
           
           }`}
