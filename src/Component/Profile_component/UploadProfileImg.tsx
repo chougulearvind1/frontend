@@ -47,9 +47,6 @@ const UploadProfileImg:React.FC<UploadProfileImgModal> = ({closeModal,userId}) =
               toast.success("Profile picture set sucessfully");
               closeModal(ProfileImage)
             }
-                  
-            
-
             }else{
               toast.error('you can not upload image without selecting ')
             }
@@ -58,6 +55,7 @@ const UploadProfileImg:React.FC<UploadProfileImgModal> = ({closeModal,userId}) =
             console.error('Error uploading file:', error);
           }      
       };
+      console.log('render')
   return (
     <div>
         <div className={`modal d-block`} tabIndex={tab} role="dialog">

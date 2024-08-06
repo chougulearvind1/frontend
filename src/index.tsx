@@ -18,7 +18,7 @@ const root = ReactDOM.createRoot(
 // eslint-disable-next-line react-hooks/rules-of-hooks
 
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <div>
     <BrowserRouter>
                 <Routes>
@@ -34,7 +34,7 @@ root.render(
     <ToastContainer position='top-right'></ToastContainer>
     {/* <App/> */}
   </div>
-  </React.StrictMode>
+  // </React.StrictMode>
   
     
     

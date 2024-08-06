@@ -65,7 +65,7 @@ function Profile() {
     useEffect(() => {
 
       if(UserData!==undefined) {
-         setProfileImage(`https://backend-3j4k.onrender.com/profile_img/${UserData?.profle_picture.filename}`)
+         setProfileImage(`${UserData?.profle_picture.filename}`)
          if(id===UserData._id){
               setLoggedUserOrNot(true)
               
