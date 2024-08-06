@@ -37,7 +37,7 @@ const UploadProfileImg:React.FC<UploadProfileImgModal> = ({closeModal,userId}) =
               const fileArrayBuffer = await File.arrayBuffer(); // Convert file to ArrayBuffer
               // const buffer=Buffer.from(fileArrayBuffer)      
             console.log(userId,'userid');
-            const response = await axios.post(`https://backend-3j4k.onrender.com/API/user/${userId}/uploadProfilePic`, fileArrayBuffer, {
+            const response = await axios.post(`http://localhost:5000/API/user/${userId}/uploadProfilePic`, fileArrayBuffer, {
               headers: {
                 Authorization:`Bearer ${token}`,
                 'Content-Type': 'image/jpeg',
@@ -55,7 +55,6 @@ const UploadProfileImg:React.FC<UploadProfileImgModal> = ({closeModal,userId}) =
             console.error('Error uploading file:', error);
           }      
       };
-      console.log('render')
   return (
     <div>
         <div className={`modal d-block`} tabIndex={tab} role="dialog">
