@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import React, { ChangeEvent,  useState } from 'react'
+import React, { ChangeEvent,  useEffect,  useState } from 'react'
 import { toast } from 'react-toastify';
 
 interface UploadProfileImgModal{
@@ -29,6 +29,29 @@ const UploadProfileImg:React.FC<UploadProfileImgModal> = ({closeModal,userId}) =
          
     }
     }
+    const [ApiCall, setApiCall] = useState<boolean>(false)
+    useEffect(() => {
+      if(File && ApiCall){
+         fetch('https://api.imgur.com/3/image', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Client-ID eaa645299a66810`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          image: File.arrayBuffer(),
+          type: 'base64'
+        })
+      }).then((data) => {console.log(data,'response');  })
+      .catch((error) => { console.log(error,'eroorrrrrrrrrr'); })
+      
+    
+    }
+      
+    
+     
+    }, [ApiCall, File])
+    
     // const fileInputRef = useRef<HTMLInputElement>(null)   
     const handleUpload = async () => {
 
@@ -37,7 +60,8 @@ const UploadProfileImg:React.FC<UploadProfileImgModal> = ({closeModal,userId}) =
               const fileArrayBuffer = await File.arrayBuffer(); // Convert file to ArrayBuffer
               // const buffer=Buffer.from(fileArrayBuffer)      
             console.log(userId,'userid');
-            const response = await axios.post(`http://localhost:5000/API/user/${userId}/uploadProfilePic`, fileArrayBuffer, {
+            
+            const response = await axios.post(`https://api.imgur.com/3/image`, fileArrayBuffer, {
               headers: {
                 Authorization:`Bearer ${token}`,
                 'Content-Type': 'image/jpeg',
@@ -47,6 +71,9 @@ const UploadProfileImg:React.FC<UploadProfileImgModal> = ({closeModal,userId}) =
               toast.success("Profile picture set sucessfully");
               closeModal(ProfileImage)
             }
+                  
+            
+
             }else{
               toast.error('you can not upload image without selecting ')
             }
@@ -86,7 +113,7 @@ const UploadProfileImg:React.FC<UploadProfileImgModal> = ({closeModal,userId}) =
     
       </div>
       <div className="modal-footer">
-      <button   onClick={handleUpload} className="btn btn-outline-primary">Upload </button>
+      <button   onClick={() => { setApiCall(true);handleUpload() }} className="btn btn-outline-primary">Upload </button>
         <button type="button" className="btn btn-secondary" onClick={() => { closeModal(ProfileImage)}} >Close</button>
         
       </div>
