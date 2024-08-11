@@ -150,6 +150,8 @@ the login page again. */}
             .nav-item {
               transform: scale(1.1);
               transform-origin: top left;
+              display:flex;
+              justify-content:space-between;
             }
           }
 

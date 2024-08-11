@@ -50,7 +50,9 @@ function Login() {
         Cookies.set('UserName',resp.data.UserName ,{expires:1})
         Cookies.set('id',resp.data.id,{expires:1})
         //if login sucessful then navigate to Home
+        // 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
         if(resp.status===200){
+        
           Navigate('/Home')
         }
         toast.success(resp.data.message)
