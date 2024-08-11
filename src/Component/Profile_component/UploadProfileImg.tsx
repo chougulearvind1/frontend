@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import React, { ChangeEvent,  useCallback,  useEffect,  useState } from 'react'
+import React, { ChangeEvent,   useState } from 'react'
 import { toast } from 'react-toastify';
-import _ from "lodash";
+
 interface UploadProfileImgModal{
   closeModal:(profile:any)=>any,
   userId:string|undefined
