@@ -34,7 +34,7 @@ function SideBar() {
       {/* - Clicking on the nav links will get to appropriate page      */}
         <ul className="navbar-nav flex-row  flex-sm-column align-item-center ">       
         <li className=""><a href="/" className="img-fluid " style={{display:'flex',justifyContent:'center'}}>
-            <img className="ratio ratio-1x1" src={img} alt="img" />      
+            <img className="ratio ratio-1x1 w-50 w-sm-75 w-md-100" src={img} alt="img" />      
           </a></li>
           <li className="nav-item">
             <a href="/" className="nav-link">
@@ -106,7 +106,7 @@ the login page again. */}
            .divsticky {
            position:sticky;
            z-index:10;
-           top:75px
+           top:50px;
            }
           button>span{
               font-size: larger;
@@ -118,7 +118,13 @@ the login page again. */}
               background-color:	#00aced
              }
           /* Default styles for all screen sizes */
+           @media (min-width: 576px) {
+            .divsticky {top:0px}
+            .sm-ht{
+          height:95vh;
           
+          }
+           }
 
           /* Increase size for medium screens (md)d and up */
           @media (min-width: 768px) {
@@ -132,7 +138,7 @@ the login page again. */}
           }
           .sm-ht{
           height:95vh;
-          position:static;
+          
           }
           .nav-item>a{
           

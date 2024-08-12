@@ -32,6 +32,7 @@ const TweetList:React.FC<TweetListProps> = ({AllTweet,updatedTweets}) => {
         console.log(AllTweet, 'all tweet effect');
         const DeleteTweet= useCallback(
            async (TweetforDelete:any) => {
+            //delete tweet from array using filter
              const filter=await Promise.all(AllTweets.filter((element) => {
             return element._id!==TweetforDelete
           }))     
@@ -43,7 +44,7 @@ const TweetList:React.FC<TweetListProps> = ({AllTweet,updatedTweets}) => {
          )
          
        
-       
+       //memo is used for not render until input data not change
       const AllTWeetMemo= useMemo(() => {       
           if(AllTweets!==undefined){
               return(AllTweets.map(

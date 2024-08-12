@@ -168,7 +168,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
                         </div>
                         <div className="card-body" style={{paddingBottom:'0'}}>
                           <p style={{fontSize:'larger'}} className="">{Tweet?.content}</p> 
-                          {Tweet?.image &&  (<img src={`https://raw.githubusercontent.com/chougulearvind1/images/main/tweets/${Tweet?.image}`} className="card-img-top" alt="Card"></img>)}
+                          {Tweet?.image &&  (<img src={`https://raw.githubusercontent.com/chougulearvind1/images/main/tweets/${Tweet?.image}`} className="card-img-top ratio ratio1X1" alt="Card"></img>)}
                          
                                 
 

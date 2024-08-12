@@ -65,7 +65,7 @@ function Profile() {
     useEffect(() => {
 
       if(UserData!==undefined) {
-         setProfileImage(`${UserData?.profle_picture.filename}`)
+         setProfileImage(`https://raw.githubusercontent.com/chougulearvind1/images/main/img/${UserData?.profle_picture.originalname}`)
          if(id===UserData._id){
               setLoggedUserOrNot(true)
               
