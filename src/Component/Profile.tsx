@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 import TweetList from './Home_Component/TweetList'
 import EditProfile from './Profile_component/EditProfile'
 import UploadProfileImg from './Profile_component/UploadProfileImg'
-import  def from '../Component/default.jpg'
+
 
 function Profile() {
 
@@ -20,7 +20,7 @@ function Profile() {
     const [UserTweetsAndReplies, setUserTweetsAndReplies] = useState<any>()
     const [EditProfileModal, setEditProfileModal] = useState<boolean>(false)
     const [UploadProfileImgModal, setUploadProfileImgModal] = useState<boolean|undefined>(undefined)
-    const [ProfileImage, setProfileImage] = useState<string>(def)
+    const [ProfileImage, setProfileImage] = useState<string>()
 
     useEffect(() => {
       
@@ -66,7 +66,9 @@ function Profile() {
     useEffect(() => {
 
       if(UserData!==undefined) {
-         setProfileImage(`https://raw.githubusercontent.com/chougulearvind1/images/main/img/${UserData?.profle_picture.filename}`)
+        if(UserData.profle_picture?.filename!==undefined){ 
+         setProfileImage(`https://raw.githubusercontent.com/chougulearvind1/images/main/img/${ UserData?.profle_picture?.filename}`)
+        }
          if(id===UserData._id){
               setLoggedUserOrNot(true)
               

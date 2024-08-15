@@ -159,7 +159,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
                </div> )}
             <div className="d-flex" style={{flexDirection:'row'}}>
                           <div style={{}} className='col-auto'>
-                            <img style={{width:'70px',height:'70px',margin:'5px'}} src={`https://raw.githubusercontent.com/chougulearvind1/images/main/img/${Tweet?.tweetedBy?.profle_picture?.filename}`||def} alt="" className="rounded-circle mr3" />
+                            <img style={{width:'70px',height:'70px',margin:'5px'}} src={`https://raw.githubusercontent.com/chougulearvind1/images/main/img/${Tweet?.tweetedBy?.profle_picture?.filename}`} alt="" className="rounded-circle mr3" />
                         </div>
                         <div className='col p-1 pt-2'>
                         
@@ -170,7 +170,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
                         </div>
                         <div className="card-body" style={{paddingBottom:'0'}}>
                           <p style={{fontSize:'larger'}} className="">{Tweet?.content}</p> 
-                          {Tweet?.image &&  (<img src={`https://raw.githubusercontent.com/chougulearvind1/images/main/tweets/${Tweet?.image}`} className="card-img-top ratio ratio1X1" alt="Card"></img>)}
+                          {Tweet?.image &&  (<img src={`https://raw.githubusercontent.com/chougulearvind1/images/main/tweets/${ Tweet?.image}`} className="card-img-top ratio ratio1X1" alt="Card"></img>)}
                          
                                 
 

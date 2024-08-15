@@ -38,7 +38,7 @@ const UploadProfileImg:React.FC<UploadProfileImgModal> = ({closeModal,userId}) =
               // const buffer=Buffer.from(fileArrayBuffer)      
             console.log(userId,'userid');
             
-            const response = await axios.post(`https://backend-3j4k.onrender.com/API/user/${userId}/uploadProfilePic`, fileArrayBuffer, {
+            const response = await axios.post(`http://localhost:5000/API/user/${userId}/uploadProfilePic`, fileArrayBuffer, {
               headers: {
                 Authorization:`Bearer ${token}`,
                 'Content-Type': 'image/jpeg',

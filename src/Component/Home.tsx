@@ -43,8 +43,10 @@ const Home=()=>  {
         allTweetsWithRetweets.sort((a, b) => {
           return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
         });   
-
-       setAllTweet(allTweetsWithRetweets)    
+       if(allTweetsWithRetweets){
+        setAllTweet(allTweetsWithRetweets)  
+       }
+         
     }
     fetchdata()
       const innerDiv=childRef.current;

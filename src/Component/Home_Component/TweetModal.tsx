@@ -55,7 +55,7 @@ const TweetModal:React.FC<Modal_props>= ({show,closeModal}) => {
              'Authorization': `Bearer ${token}`
             }
           }
-        const resp= await axios.post('https://backend-3j4k.onrender.com/API/tweet/',formdata,config);       
+        const resp= await axios.post('http://localhost:5000/API/tweet/',formdata,config);       
          if (await resp.status===200) {        
            toast.success(resp.data.message)
            closeModal(await resp.data.Tweet);
