@@ -6,13 +6,24 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-function TweetReplies() {    
+async function TweetReplies() {    
       
        const token = Cookies.get('token')
        const location=useLocation();
        const {id}=useParams()
-       
-       const TweetDetails=location.state.Tweets.replies;
+        const [TweetDetails, setTweetDetails] = useState<any>()
+       if(location.state.Tweets.replies){
+        setTweetDetails(location.state.Tweets.replies)
+       }else{
+        const config={
+          headers:{  
+            'Content-Type': 'application/json',
+             'Authorization': `Bearer ${token}`
+            }
+          }
+          const resp= await axios.get(`https://backend-3j4k.onrender.com/API/tweet/${id}`,config)
+          setTweetDetails(resp.data.message)
+       }
        const [ReplyObject, setReplyObject] = useState<any[]>()
        
        useEffect(() => {
