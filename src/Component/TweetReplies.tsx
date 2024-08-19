@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import TweetList from './Home_Component/TweetList'
-import { useLocation} from 'react-router-dom'
+import { useLocation, useParams} from 'react-router-dom'
 import Tweets from './Home_Component/Tweets';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
 function TweetReplies() {    
-   
+      
        const token = Cookies.get('token')
        const location=useLocation();
-        
+       const {id}=useParams()
+       
        const TweetDetails=location.state.Tweets.replies;
        const [ReplyObject, setReplyObject] = useState<any[]>()
        
@@ -26,6 +27,7 @@ function TweetReplies() {
               const  AllTweetReplies= TweetDetails.map(async (ReplyTweet: any) => { 
                 console.log(ReplyTweet,'reply tweet');
                  const resp= await axios.get(`https://backend-3j4k.onrender.com/API/tweet/${ReplyTweet?._id}`,config)
+                 console.log('responce data ',resp.data.message)
                return resp.data.message;
              })
              setReplyObject( await Promise.all( AllTweetReplies))            
@@ -38,7 +40,7 @@ function TweetReplies() {
          if(TweetDetails!==undefined){
           FetchData()
          }
-       }, [TweetDetails, token])
+       }, [TweetDetails, id, token])
             
   return (
     <div> 

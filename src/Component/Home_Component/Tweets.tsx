@@ -9,7 +9,6 @@ import Cookies from 'js-cookie';
 import ReplyModal from './ReplyModal';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import def from '../default.jpg'
 
 interface Tweets_props{
   TweetData:any,
@@ -139,7 +138,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
     
     const cardClick = (Tweets: any) => {
       console.log(Tweets,'selected tweet');
-      navigate(`/Tweets`,{ state: { Tweets }})
+      navigate(`/Tweets/${Tweets._id}`,{ state: { Tweets }})
     }
     
 

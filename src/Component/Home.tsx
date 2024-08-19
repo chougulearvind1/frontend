@@ -21,7 +21,7 @@ const Home=()=>  {
       setLoggedOrNot({pointerEvents:'none'})
     }
     const fetchdata = async () => {
-     const resp:AxiosResponse= await axios.get('https://backend-3j4k.onrender.com/API/tweet/')
+     const resp:AxiosResponse= await axios.get('http://localhost:5000/API/tweet/')
      if(!resp){throw new Error('network response was not ok')}
      // Flatten the array of tweets including their retweets
      const allTweetsWithRetweets = [];

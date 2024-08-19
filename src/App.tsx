@@ -30,7 +30,7 @@ function App() {
            <div className="col-12  col-sm-9  col-md-6" >
            <Routes>
                   <Route path='/profile/:userId' element={<Profile/>} ></Route>
-                  <Route path='/Tweets' Component={TweetReplies}></Route>
+                  <Route path='/Tweets/:id' Component={TweetReplies}></Route>
                   <Route path='Home' Component={Home}></Route>
                   <Route path='/' Component={Home}></Route>
                   
