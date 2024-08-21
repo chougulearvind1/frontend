@@ -10,6 +10,7 @@ import Home from './Component/Home';
 
 
 function App() {
+ 
 
   useEffect(() => {
   const rootElement = document.getElementById('root');
