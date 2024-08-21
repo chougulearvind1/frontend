@@ -1,44 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import TweetList from './Home_Component/TweetList'
-import { useLocation, useParams} from 'react-router-dom'
+import {  useParams} from 'react-router-dom'
 import Tweets from './Home_Component/Tweets';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
-async function TweetReplies() {    
+
+function TweetReplies() {    
       
-       const token = Cookies.get('token')
-       const location=useLocation();
+
        const {id}=useParams()
-        const [TweetDetails, setTweetDetails] = useState<any>()
-       if(location.state.Tweets.replies){
-        setTweetDetails(location.state.Tweets.replies)
-       }else{
-        const config={
-          headers:{  
-            'Content-Type': 'application/json',
-             'Authorization': `Bearer ${token}`
+       const [Tweet, setTweet] = useState<any>()
+       const [TweetDetails, setTweetDetails] = useState<any>()     
+       const [ReplyObject, setReplyObject] = useState<any[]>()   
+
+
+       useEffect(() => {
+         async function FetchData(){
+         
+          const config={
+            headers:{  
+              'Content-Type': 'application/json',
+              }
             }
-          }
-          const resp= await axios.get(`https://backend-3j4k.onrender.com/API/tweet/${id}`,config)
-          setTweetDetails(resp.data.message)
+          const resp= await axios.get(`https://backend-3j4k.onrender.com/API/tweet/${id}`,config) 
+           setTweet(resp.data.message)    
+           setTweetDetails(resp.data.message.replies)      
+        
+         }
+        
+        FetchData();
+       return () => {
+         
        }
-       const [ReplyObject, setReplyObject] = useState<any[]>()
-       
+     }, [id])
+     
        useEffect(() => {
          const FetchData = async () => {
     try {   const config={
               headers:{  
-                'Content-Type': 'application/json',
-                 'Authorization': `Bearer ${token}`
+                'Content-Type': 'application/json'                 
                 }
               }
               console.log(TweetDetails,'Tweet Details');
               const  AllTweetReplies= TweetDetails.map(async (ReplyTweet: any) => { 
-                console.log(ReplyTweet,'reply tweet');
                  const resp= await axios.get(`https://backend-3j4k.onrender.com/API/tweet/${ReplyTweet?._id}`,config)
-                 console.log('responce data ',resp.data.message)
                return resp.data.message;
              })
              setReplyObject( await Promise.all( AllTweetReplies))            
@@ -51,14 +57,14 @@ async function TweetReplies() {
          if(TweetDetails!==undefined){
           FetchData()
          }
-       }, [TweetDetails, id, token])
+       }, [TweetDetails])
             
   return (
     <div> 
-        
-        <Tweets key={location.state.Tweets._id} TweetData={location.state.Tweets} ></Tweets> 
+        { Tweet && <Tweets key={Tweet._id} TweetData={Tweet} ></Tweets> }
+         
         <h3>Replies</h3>
-        {<TweetList key={Date.now()} AllTweet={ReplyObject}></TweetList>}
+        { ReplyObject && <TweetList key={Date.now()} AllTweet={ReplyObject}></TweetList>}
 
     </div>
   )

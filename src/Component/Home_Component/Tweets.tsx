@@ -130,7 +130,7 @@ const Tweets:React.FC<Tweets_props> = ({TweetData,DelTweet}) => {
                 DeleteTweetFuncion()
             }    
             
-          }, [DelTweet, DeleteTweet, Tweet, Tweet._id, token])
+          }, [DelTweet, DeleteTweet, Tweet,  token])
                 
     const StopPropagation:MouseEventHandler<HTMLDivElement> = (event:React.MouseEvent<HTMLElement>) => { 
       event.stopPropagation()
