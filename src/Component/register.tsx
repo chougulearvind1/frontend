@@ -36,7 +36,7 @@ function Register() {
     
    })
    
-    const [errors, seterrors] = useState<form_error>({
+    const [errors, seterrors] = useState<form_error|null>({
         Name:'',
         UserName:'',
         Email:'',
@@ -88,15 +88,17 @@ function Register() {
 
 
    }
+ 
+   
    const handle = (e:any) => {
     const {name,value}=e.target;
-    setForm_Data({...Form_Data,[name]:value})
+    setForm_Data({...Form_Data,[name]:value.trim()})
     
    }
    
    const confirmation =  (e:any) => {
     const {value}=e.target;
-    setconfirm_password(value)
+    setconfirm_password(value.trim())
     
    }
 
@@ -105,8 +107,7 @@ function Register() {
     e.preventDefault()  
    const validate_error= await validate();
    if(Object.keys(validate_error).length===0){    
-    console.log('no error');
-
+   seterrors(null);
    }else{
     seterrors(await validate_error)
    }
@@ -129,11 +130,11 @@ function Register() {
                 <h2>Register</h2>
 
                 <form action="" method="get" onSubmit={Submit}>
-               <div className="mb-3 input-group "><span className="input-group-text"><i className="fa fa-user"></i></span><input type="text" name="Name" id="" className={`form-control ${errors.Name?'is-invalid':''}`}placeholder=' Enter Name' value={Form_Data.Name} onChange={handle} />{errors.Name && <div className='invalid-feedback'>{errors.Name}</div> }</div>
-               <div className="mb-3 input-group "><span className="input-group-text"><i className="fa fa-id-badge"></i></span><input type="text" name="UserName" id="" className={`form-control ${errors.UserName?'is-invalid':''}`} placeholder='Enter User Name'value={Form_Data.UserName}onChange={handle}/>{errors.UserName && <div className='invalid-feedback'>{errors.UserName}</div> }</div>
-               <div className="mb-3 input-group "><span className="input-group-text"><i className="fa fa-envelope"></i></span><input type="text" name="Email" id="" className={`form-control ${errors.Email?'is-invalid':''}`}placeholder='Enter Email Address'value={Form_Data.Email} onChange={handle} />{errors.Email && <div className="invalid-feedback">{errors.Email}</div> }</div>
-               <div className="mb-3 input-group "><span className="input-group-text"><i className="fa fa-lock"></i></span><input type="text" name="password" id="" className={`form-control ${errors.password?'is-invalid':''}`} placeholder='Enter password' value={Form_Data.password} onChange={handle}/>{errors.password && <div className="invalid-feedback">{errors.password}</div> }</div>
-               <div className="mb-3 input-group "><span className="input-group-text"><i className="fa fa-lock"></i></span><input type="text" name="Confirm_password" id="" className={`form-control ${errors.confirm_password?'is-invalid':''}`} placeholder='Confirm above Password' onChange={confirmation}/>{errors.confirm_password && <div className="invalid-feedback">{errors.confirm_password}</div> }</div>
+               <div className="mb-3 input-group "><span className="input-group-text"><i className="fa fa-user"></i></span><input type="text" name="Name" id="" className={`form-control ${errors?.Name && errors.Name?'is-invalid':''}`}placeholder=' Enter Name' value={Form_Data.Name} onChange={handle} />{errors?.Name && errors.Name && <div className='invalid-feedback'>{errors.Name}</div> }</div>
+               <div className="mb-3 input-group "><span className="input-group-text"><i className="fa fa-id-badge"></i></span><input type="text" name="UserName" id="" className={`form-control ${errors?.UserName && errors.UserName?'is-invalid':''}`} placeholder='Enter User Name'value={Form_Data.UserName}onChange={handle}/>{errors?.UserName && errors.UserName && <div className='invalid-feedback'>{errors.UserName}</div> }</div>
+               <div className="mb-3 input-group "><span className="input-group-text"><i className="fa fa-envelope"></i></span><input type="text" name="Email" id="" className={`form-control ${errors?.Email &&  errors.Email?'is-invalid':''}`}placeholder='Enter Email Address'value={Form_Data.Email} onChange={handle} />{errors?.Email && errors.Email && <div className="invalid-feedback">{errors.Email}</div> }</div>
+               <div className="mb-3 input-group "><span className="input-group-text"><i className="fa fa-lock"></i></span><input type="text" name="password" id="" className={`form-control ${errors?.password && errors.password?'is-invalid':''}`} placeholder='Enter password' value={Form_Data.password} onChange={handle}/>{errors?.password && errors.password && <div className="invalid-feedback">{errors.password}</div> }</div>
+               <div className="mb-3 input-group "><span className="input-group-text"><i className="fa fa-lock"></i></span><input type="text" name="Confirm_password" id="" className={`form-control ${errors?.confirm_password && errors.confirm_password?'is-invalid':''}`} placeholder='Confirm above Password' onChange={confirmation}/>{errors?.confirm_password && errors.confirm_password && <div className="invalid-feedback">{errors.confirm_password}</div> }</div>
                <div className="mb-3 input-group ">   <button type="submit" className="btn btn-primary px-4">Register</button></div>
                <div className="text-center">
                <p className="mb-3">Already registered? <a href="/login">Login here</a></p>

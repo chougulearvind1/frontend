@@ -34,7 +34,6 @@ function Login() {
       }
       if(!Form_Data.UserName)errors.UserName='User Name or Email is required'
       if(!Form_Data.password)errors.password='password required'
-      console.log(Form_Data,'form data');
       const config:AxiosRequestConfig={
         headers:{
           "Content-Type":"application/json"
@@ -75,7 +74,7 @@ function Login() {
     }
     const handle = (e:any) => {
       const {value,name}=e.target;
-      setForm_Data({...Form_Data,[name]:value})
+      setForm_Data({...Form_Data,[name]:value.trim()})
     }
     const styles = {
       container: {
