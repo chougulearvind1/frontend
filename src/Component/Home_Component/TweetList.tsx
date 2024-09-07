@@ -29,7 +29,7 @@ const TweetList:React.FC<TweetListProps> = ({AllTweet,updatedTweets}) => {
       //         }      
       // }   
 
-        console.log(AllTweet, 'all tweet effect');
+        
         const DeleteTweet= useCallback(
            async (TweetforDelete:any) => {
             //delete tweet from array using filter

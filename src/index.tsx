@@ -22,16 +22,14 @@ root.render(
     <div>
     <BrowserRouter>
                 <Routes>
+                  {/* * added for any other path */}
                   <Route path='*' Component={App}></Route>
-                  <Route path='/register' Component={Register} ></Route>
-                  <Route path='/login' Component={login} ></Route>
-                  {/* <Route path='/profile/:userId' element={<Profile/>} ></Route>
-                  <Route path='/Tweets' Component={TweetReplies}></Route>
-                   */}
-
+                  <Route path='/register' Component={Register} ></Route> {/* Route for user registration */}
+                  <Route path='/login' Component={login} ></Route>{/* Route for user login */}
                 </Routes>
                 </BrowserRouter>   
     <ToastContainer position='top-right'></ToastContainer>
+      {/* show toast at top right position */}
     {/* <App/> */}
   </div>
   // </React.StrictMode>

@@ -6,13 +6,8 @@ import TweetReplies from './Component/TweetReplies';
 import Profile from './Component/Profile';
 import Home from './Component/Home';
 
-
-
-
 function App() {
- 
-
-  useEffect(() => {
+   useEffect(() => {
   const rootElement = document.getElementById('root');
   if (rootElement) {
     rootElement.style.backgroundColor = '#ffffff';
@@ -35,14 +30,13 @@ function App() {
                   <Route path='Home' Component={Home}></Route>
                   <Route path='/' Component={Home}></Route>
                   
-           </Routes>
-                
+           </Routes>               
             
            </div>
            <div className="col-2  d-none col-md-2 col-md-block">
 
            </div>
-             {/* <ToastContainer></ToastContainer> */}
+             
         </div>
      
         
